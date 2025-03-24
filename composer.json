@@ -2,7 +2,7 @@
     "name": "valb/php.rpg-playground",
     "autoload": {
         "psr-4": {
-            "Valb\\PhpRpgPlayground\\": "src/"
+            "Rpg\\": "src/"
         }
     },
     "authors": [
@@ -12,7 +12,9 @@
         }
     ],
     "require-dev": {
-        "pestphp/pest": "^3.7"
+        "pestphp/pest": "^3.7",
+        "friendsofphp/php-cs-fixer": "^3.73",
+        "symfony/var-dumper": "^7.2"
     },
     "config": {
         "allow-plugins": {
@@ -20,7 +22,10 @@
         }
     },
     "require": {
-        "symfony/console": "^7.2",
-        "symfony/var-dumper": "^7.2"
+        "symfony/console": "^7.2"
+    },
+    "scripts": {
+        "test": "pest",
+        "cs-fix": "./vendor/bin/php-cs-fixer fix"
     }
 }
