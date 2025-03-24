@@ -1,0 +1,26 @@
+{
+    "name": "valb/php.rpg-playground",
+    "autoload": {
+        "psr-4": {
+            "Valb\\PhpRpgPlayground\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "valb.mig",
+            "email": "valb.mig@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "pestphp/pest": "^3.7"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require": {
+        "symfony/console": "^7.2",
+        "symfony/var-dumper": "^7.2"
+    }
+}
