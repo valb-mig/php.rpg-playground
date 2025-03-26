@@ -2,7 +2,8 @@
     "name": "valb/php.rpg-playground",
     "autoload": {
         "psr-4": {
-            "Rpg\\": "src/"
+            "Rpg\\": "src/",
+            "Tests\\": "tests/"
         }
     },
     "authors": [
@@ -22,10 +23,11 @@
         }
     },
     "require": {
-        "symfony/console": "^7.2"
+        "symfony/console": "^7.2",
+        "symfony/uid": "^7.2"
     },
     "scripts": {
-        "test": "pest",
-        "cs-fix": "./vendor/bin/php-cs-fixer fix"
+        "test": "./vendor/bin/pest",
+        "fix": "./vendor/bin/php-cs-fixer fix"
     }
 }
