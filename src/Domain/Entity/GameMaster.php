@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Rpg\Domain\Entity;
 
 use Rpg\Domain\Abstraction\User;
+use Symfony\Component\Uid\Uuid;
 
-class Player extends User
+class GameMaster extends User
 {
-    public function __construct(string $uuid, string $name)
+    public function __construct(Uuid $uuid, string $name)
     {
         parent::__construct($uuid, $name);
     }
