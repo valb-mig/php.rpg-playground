@@ -8,8 +8,7 @@ use Rpg\Domain\Abstraction\User;
 
 class Player extends User
 {
-    public function __construct(string $uuid, string $name)
-    {
+    public function __construct(string $uuid, string $name) {
         parent::__construct($uuid, $name);
     }
 }  

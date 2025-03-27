@@ -4,27 +4,33 @@ declare(strict_types=1);
 
 namespace Tests\Application\UseCases;
 
-use Symfony\Component\Uid\Uuid;
 use Rpg\Application\UseCases\GameMaster\CreateGameMaster;
-use Rpg\Domain\Entity\Factory\GameMasterFactory;
 use PHPUnit\Framework\Attributes\Test;
+use Rpg\Domain\Entity\Factory\GameMasterFactory;
+use Symfony\Component\Uid\Uuid;
 use Tests\TestCase;
 
 final class CreateGameMasterTest extends TestCase
 {
-    #[Test]
-    public function success_when_create_game_master()
+    private GameMasterFactory $gameMasterFactory;
+    
+    public function setUp(): void
     {
-        $gm = (new GameMasterFactory())->create(Uuid::v4(), 'Jhon Doe');
-        CreateGameMaster::handle($gm);
-        $this->assertTrue(true);
+        $this->gameMasterFactory = new GameMasterFactory();
     }
 
     #[Test]
-    public function fail_when_create_game_master()
+    public function success_when_create_game_master()
     {
-        $this->expectException(\Throwable::class); // [TODO] Custom Exception
-        $gm = (new GameMasterFactory())->create(Uuid::v4(), '');
-        CreateGameMaster::handle($gm);
+        $this->expectOutputString('Game Master created: Jhon Doe');
+
+        $uuid = Uuid::v4()->toString();
+
+        $gameMaster = $this->gameMasterFactory->build(
+            uuid: $uuid, 
+            name: 'Jhon Doe'
+        );
+
+        (new CreateGameMaster())->handle($gameMaster);
     }
 }
