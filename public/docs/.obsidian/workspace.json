@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "a46913265ff0ae57",
+        "id": "5177af96902a2f13",
         "type": "tabs",
         "children": [
           {
-            "id": "ac2e05f65136c3e9",
+            "id": "e9af8a656f3eba7b",
             "type": "leaf",
             "state": {
               "type": "excalidraw",
@@ -165,8 +165,10 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "66267cf06010a33b",
+  "active": "e9af8a656f3eba7b",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2025-03-28 08.57.47.excalidraw.md",
+    "Excalidraw",
     "rpg-playground.obsidian.md",
     "obsidian.md",
     "obsidian copy.md",

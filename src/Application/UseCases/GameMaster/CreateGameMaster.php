@@ -6,16 +6,16 @@ namespace Rpg\Application\UseCases\GameMaster;
 
 use Rpg\Domain\Entity\GameMaster;
 use Rpg\Infrastructure\Contract\GameMasterRepositoryContract;
-use Rpg\Infrastructure\Repository\Fake\FakeGameMasterRepository;
+use Rpg\Infrastructure\ValueObject\Repository;
 use Symfony\Component\Uid\Uuid;
 
-class CreateGameMaster
+class CreateGameMaster 
 {
     private GameMasterRepositoryContract $gameMasterRepository;
 
     public function __construct()
     {
-        $this->gameMasterRepository = new FakeGameMasterRepository();
+        $this->gameMasterRepository = (new Repository('game_master'))->set();
     }
 
     /**
