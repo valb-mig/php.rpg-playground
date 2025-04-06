@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 return [
     'repository' => [
-        'game_master' => throw new \Exception('Not implemented')
+        'game_master' => throw new \Exception('Not implemented'),
+        'character' => throw new \Exception('Not implemented')
     ]
 ];
