@@ -9,7 +9,11 @@ class Life
     public function __construct(
         protected int $current,
         protected int $max
-    ){}
+    ){
+        if($current > $max) {
+            throw new \InvalidArgumentException('Invalid life');
+        }
+    }
 
     public function getCurrent(): int
     {
