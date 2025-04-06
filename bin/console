@@ -8,6 +8,5 @@ use App\Command;
 use Symfony\Component\Console\Application;
 
 $app = new Application();
-// $app->add(new ExportConvertedFile());
 $app->run();
 ?>
