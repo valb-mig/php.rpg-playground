@@ -8,18 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e9af8a656f3eba7b",
+            "id": "17716eb7ce8a3fb4",
             "type": "leaf",
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "rpg-playground.obsidian.md"
+                "file": "brainstorm.excalidraw.md"
               },
               "icon": "excalidraw-icon",
-              "title": "rpg-playground.obsidian"
+              "title": "brainstorm.excalidraw"
+            }
+          },
+          {
+            "id": "a71db35a4dd0a704",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "usecases.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "usecases.excalidraw"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -165,11 +178,13 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "e9af8a656f3eba7b",
+  "active": "a71db35a4dd0a704",
   "lastOpenFiles": [
+    "brainstorm.excalidraw.md",
+    "usecases.excalidraw.md",
     "Excalidraw/Drawing 2025-03-28 08.57.47.excalidraw.md",
+    "Untitled.md",
     "Excalidraw",
-    "rpg-playground.obsidian.md",
     "obsidian.md",
     "obsidian copy.md",
     "obsidian.excalidraw"
