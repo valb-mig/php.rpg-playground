@@ -10,10 +10,8 @@ class Repository
 
     public function __construct(string $method)
     {
-        $this->config = require_once __DIR__ . '/../../../config/config.php';
+        $this->config = require __DIR__ . '/../../../config/config.php';
         $this->repository = $this->config['repository'][$method];
-
-        return $this;
     }
 
     public function set()
