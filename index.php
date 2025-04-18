@@ -6,14 +6,15 @@ use Dotenv\Dotenv;
 use Rpg\Application\UseCases\Character\CreateCharacter;
 use Rpg\Domain\Entity\{
     User,
-    Character
+    Character,
+    Condition,
+    Item
 };
+use Rpg\Domain\Enum\ConditionStatus;
 use Rpg\Domain\ValueObject\Life;
 
 $dotenv = Dotenv::createImmutable(__DIR__, null, true);
 $dotenv->load();
-
-// Creating vecna :)
 
 $character = (new CreateCharacter())->handle(
     new Character(
@@ -23,4 +24,32 @@ $character = (new CreateCharacter())->handle(
     )
 );
 
-dd($character);
+$sword = new Item(
+    name: 'Sword',
+    description: 'A sword',
+    weight: 10
+);
+
+$sword->setCondition(
+    new Condition(
+        name: 'Damage',
+        status: ConditionStatus::ACTIVE,
+        value: 10
+    )
+);
+
+$healingPotion = new Item(
+    name: 'Healing Potion',
+    description: 'A healing potion',
+    weight: 10
+);
+
+$healingPotion->setCondition(
+    new Condition(
+        name: 'Heal',
+        status: ConditionStatus::BOTH,
+        value: 10
+    )
+);
+
+dd($character, $sword, $healingPotion);
