@@ -6,7 +6,7 @@ namespace Rpg\Application\UseCases\Character;
 
 use Rpg\Domain\Entity\Character;
 use Rpg\Infrastructure\Contract\CharacterRepositoryContract;
-use Rpg\Infrastructure\ValueObject\Repository;
+use Rpg\Infrastructure\Factory\RepositoryFactory;
 
 class CreateCharacter
 {
@@ -14,14 +14,8 @@ class CreateCharacter
 
     public function __construct()
     {
-        $this->characterRepository = (new Repository('character'))->set();
+        $this->characterRepository = (new RepositoryFactory('character'))->set();
     }
-
-    /**
-     * Create Character
-     * @param Character $character
-     * @return Character
-     */
 
     public function handle(Character $character): Character
     {

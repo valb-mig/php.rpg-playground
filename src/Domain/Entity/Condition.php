@@ -12,7 +12,11 @@ class Condition
         protected string $name,
         protected Status $status,
         protected int $value
-    ){}
+    ){
+        if(empty($name)) {
+            throw new \InvalidArgumentException('Name cannot be empty');
+        }
+    }
 
     public function getName(): string
     {
