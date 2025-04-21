@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Rpg\Infrastructure\ValueObject;
+namespace Rpg\Infrastructure\Factory;
 
-class Repository
+class RepositoryFactory
 {
     private $config;
     private $repository;

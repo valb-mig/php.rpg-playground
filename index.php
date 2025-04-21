@@ -4,6 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Dotenv\Dotenv;
 use Rpg\Application\UseCases\Character\CreateCharacter;
+use Rpg\Application\UseCases\Item\CreateItem;
 use Rpg\Domain\Entity\{
     User,
     Character,
@@ -13,8 +14,7 @@ use Rpg\Domain\Entity\{
 use Rpg\Domain\Enum\ConditionStatus;
 use Rpg\Domain\ValueObject\Life;
 
-$dotenv = Dotenv::createImmutable(__DIR__, null, true);
-$dotenv->load();
+(Dotenv::createImmutable(__DIR__, null, true))->load();
 
 $character = (new CreateCharacter())->handle(
     new Character(
@@ -24,10 +24,12 @@ $character = (new CreateCharacter())->handle(
     )
 );
 
-$sword = new Item(
-    name: 'Sword',
-    description: 'A sword',
-    weight: 10
+$sword = (new CreateItem())->handle(
+    new Item(
+        name: 'Sword',
+        description: 'A sword',
+        weight: 10
+    )
 );
 
 $sword->setCondition(
@@ -38,18 +40,4 @@ $sword->setCondition(
     )
 );
 
-$healingPotion = new Item(
-    name: 'Healing Potion',
-    description: 'A healing potion',
-    weight: 10
-);
-
-$healingPotion->setCondition(
-    new Condition(
-        name: 'Heal',
-        status: ConditionStatus::BOTH,
-        value: 10
-    )
-);
-
-dd($character, $sword, $healingPotion);
+dd($character, $sword);

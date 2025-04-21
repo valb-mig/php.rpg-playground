@@ -24,6 +24,18 @@ class Item
         protected string $description,
         protected int    $weight = 0
     ) {
+        if(empty($name)) {
+            throw new \InvalidArgumentException('Name cannot be empty');
+        }
+
+        if(empty($description)) {
+            throw new \InvalidArgumentException('Description cannot be empty');
+        }
+
+        if($weight < 0) {
+            throw new \InvalidArgumentException('Weight cannot be negative');
+        }
+
         $this->uuid = Uuid::v4()->toString();
     }
 
