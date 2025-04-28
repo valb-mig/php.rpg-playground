@@ -5,6 +5,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Dotenv\Dotenv;
 use Rpg\Application\UseCases\Character\CreateCharacter;
 use Rpg\Application\UseCases\Item\CreateItem;
+use Rpg\Application\UseCases\User\CreateUser;
 use Rpg\Domain\Entity\{
     User,
     Character,
@@ -13,12 +14,20 @@ use Rpg\Domain\Entity\{
 };
 use Rpg\Domain\Enum\ConditionStatus;
 use Rpg\Domain\ValueObject\Life;
+use Symfony\Component\Uid\Uuid;
 
 (Dotenv::createImmutable(__DIR__, null, true))->load();
 
+$user = (new CreateUser())->handle(
+    new User(
+        Uuid::v4()->toString(),
+        'Jhon Doe'
+    )
+);
+
 $character = (new CreateCharacter())->handle(
     new Character(
-        new User('Jhon Doe'),
+        $user,
         'Vecna the Sorcerer',
         new Life(100, 100)
     )

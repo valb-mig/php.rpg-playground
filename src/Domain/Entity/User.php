@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace Rpg\Domain\Entity;
 
-use Symfony\Component\Uid\Uuid;
-
 class User 
 {
-    public string $uuid;
-    
     public function __construct(
+        protected string $uuid,
         protected string $name
     ) {
         if(empty($name)) {
             throw new \InvalidArgumentException('Invalid name');
         }
 
-        $this->uuid = Uuid::v4()->toString();
+        if(empty($uuid)) {
+            throw new \InvalidArgumentException('Invalid uuid');
+        }
     }
 
     public function getUUID(): string
