@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rpg\Infrastructure\Contract;
 
 use Rpg\Domain\Entity\Item;
+use Rpg\Domain\ValueObject\UUIDv4;
 
 interface ItemRepositoryContract
 {
@@ -18,22 +19,25 @@ interface ItemRepositoryContract
 
     /**
      * Find Item
-     * @return void
+     * @param UUIDv4 $uuid
+     * @return Item
      */
 
-    public function find(): void;
+    public function find(UUIDv4 $uuid): Item;
 
     /**
      * Update Item
-     * @return void
+     * @param Item $item
+     * @return Item
      */
 
-    public function update(): void;
+    public function update(Item $item): Item;
 
     /**
      * Delete Item
+     * @param UUIDv4 $uuid
      * @return void
      */
 
-    public function delete(): void;
+    public function delete(UUIDv4 $uuid): void;
 }

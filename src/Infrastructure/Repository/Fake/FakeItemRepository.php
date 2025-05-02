@@ -5,27 +5,32 @@ declare(strict_types=1);
 namespace Rpg\Infrastructure\Repository\Fake;
 
 use Rpg\Domain\Entity\Item;
+use Rpg\Domain\ValueObject\UUIDv4;
 use Rpg\Infrastructure\Contract\ItemRepositoryContract;
 
 class FakeItemRepository implements ItemRepositoryContract
 {
     public function create(Item $item): Item
     {
-        // INFO: Mantaining the same UUID
         return $item;
     }
 
-    public function find(): void
+    public function find(UUIDv4 $uuid): Item
     {
-        throw new \Exception('Not implemented');
+        return new Item(
+            $uuid,
+            'Sword',
+            'A sword',
+            10
+        );
     }
 
-    public function update(): void
+    public function update(Item $item): Item
     {
-        throw new \Exception('Not implemented');
+        return $item;
     }
 
-    public function delete(): void
+    public function delete(UUIDv4 $uuid): void
     {
         throw new \Exception('Not implemented');
     }

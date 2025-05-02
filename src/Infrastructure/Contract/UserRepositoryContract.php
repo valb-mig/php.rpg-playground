@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rpg\Infrastructure\Contract;
 
 use Rpg\Domain\Entity\User;
+use Rpg\Domain\ValueObject\UUIDv4;
 
 interface UserRepositoryContract
 {
@@ -18,11 +19,11 @@ interface UserRepositoryContract
 
     /**
      * Find User
-     * @param string $uuid
+     * @param UUIDv4 $uuid
      * @return User
      */
 
-    public function find(string $uuid): User;
+    public function find(UUIDv4 $uuid): User;
 
     /**
      * Update User
@@ -33,9 +34,9 @@ interface UserRepositoryContract
 
     /**
      * Delete User
-     * @param string $uuid
+     * @param UUIDv4 $uuid
      * @return void
      */
 
-    public function delete(string $uuid): void;
+    public function delete(UUIDv4 $uuid): void;
 }

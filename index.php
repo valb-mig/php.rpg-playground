@@ -14,13 +14,14 @@ use Rpg\Domain\Entity\{
 };
 use Rpg\Domain\Enum\ConditionStatus;
 use Rpg\Domain\ValueObject\Life;
+use Rpg\Domain\ValueObject\UUIDv4;
 use Symfony\Component\Uid\Uuid;
 
 (Dotenv::createImmutable(__DIR__, null, true))->load();
 
 $user = (new CreateUser())->handle(
     new User(
-        Uuid::v4()->toString(),
+        new UUIDv4(Uuid::v4()->toString()),
         'Jhon Doe'
     )
 );
@@ -28,6 +29,7 @@ $user = (new CreateUser())->handle(
 $character = (new CreateCharacter())->handle(
     new Character(
         $user,
+        new UUIDv4(Uuid::v4()->toString()),
         'Vecna the Sorcerer',
         new Life(100, 100)
     )
@@ -35,6 +37,7 @@ $character = (new CreateCharacter())->handle(
 
 $sword = (new CreateItem())->handle(
     new Item(
+        new UUIDv4(Uuid::v4()->toString()),
         name: 'Sword',
         description: 'A sword',
         weight: 10
@@ -49,4 +52,4 @@ $sword->setCondition(
     )
 );
 
-dd($character, $sword);
+dd($character);

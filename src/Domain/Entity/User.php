@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Rpg\Domain\Entity;
 
+use Rpg\Domain\ValueObject\UUIDv4;
+
 class User 
 {
     public function __construct(
-        protected string $uuid,
+        protected UUIDv4 $uuid,
         protected string $name
     ) {
         if(empty($name)) {
@@ -19,7 +21,7 @@ class User
         }
     }
 
-    public function getUUID(): string
+    public function getUUID(): UUIDv4
     {
         return $this->uuid;
     }

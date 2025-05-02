@@ -25,7 +25,6 @@ class CreateUser
     public function handle(User $user): User
     {
         $user = $this->userRepository->create($user);
-        echo "User created: " . $user->getName();
         return $user;
     }
 }

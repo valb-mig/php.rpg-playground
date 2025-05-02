@@ -7,7 +7,8 @@ namespace Rpg\Domain\Entity;
 use Rpg\Domain\Entity\User;
 use Rpg\Domain\ValueObject\{
     Inventory,
-    Life
+    Life,
+    UUIDv4
 };
 
 class Character
@@ -16,9 +17,14 @@ class Character
 
     public function __construct(
         protected User $user,
+        protected UUIDv4 $uuid,
         protected string $name,
         protected Life $life
     ){
+        if(empty($uuid)) {
+            throw new \InvalidArgumentException('Invalid character uuid');
+        }
+
         if(empty($name)) {
             throw new \InvalidArgumentException('Invalid character name');
         }
@@ -29,6 +35,11 @@ class Character
     public function getUser(): User
     {
         return $this->user;
+    }
+
+    public function getUUID(): UUIDv4
+    {
+        return $this->uuid;
     }
 
     public function getName(): string

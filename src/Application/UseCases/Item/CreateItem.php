@@ -16,12 +16,15 @@ class CreateItem
         $this->itemRepository = (new RepositoryFactory('item'))->set();
     }
 
+    /**
+     * Create Item
+     * @param Item $item
+     * @return Item
+     */
+
     public function handle(Item $item): Item
     {
         $item = $this->itemRepository->create($item);
-
-        echo "Item created: " . $item->getName();
-
         return $item;
     }
 }

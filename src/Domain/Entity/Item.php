@@ -9,6 +9,7 @@ use Rpg\Domain\Trait\{
     WearebleTrait,
     ConditionTrait
 };
+use Rpg\Domain\ValueObject\UUIDv4;
 
 class Item 
 {
@@ -18,7 +19,7 @@ class Item
     protected Condition $condition;
 
     public function __construct(
-        protected string $uuid,
+        protected UUIDv4 $uuid,
         protected string $name,        
         protected string $description,
         protected int    $weight = 0
@@ -40,7 +41,7 @@ class Item
         }
     }
 
-    public function getUUID(): string
+    public function getUUID(): UUIDv4
     {
         return $this->uuid;
     }

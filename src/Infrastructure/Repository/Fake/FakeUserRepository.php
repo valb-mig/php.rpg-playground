@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rpg\Infrastructure\Repository\Fake;
 
 use Rpg\Domain\Entity\User;
+use Rpg\Domain\ValueObject\UUIDv4;
 use Rpg\Infrastructure\Contract\UserRepositoryContract;
 
 class FakeUserRepository implements UserRepositoryContract
@@ -14,7 +15,7 @@ class FakeUserRepository implements UserRepositoryContract
         return $user;
     }
 
-    public function find(string $uuid): User
+    public function find(UUIDv4 $uuid): User
     {
         return new User($uuid, 'Jhon Doe');
     }
@@ -24,7 +25,7 @@ class FakeUserRepository implements UserRepositoryContract
         return $user;
     }
 
-    public function delete(string $uuid): void
+    public function delete(UUIDv4 $uuid): void
     {
         throw new \Exception('Not implemented');
     }

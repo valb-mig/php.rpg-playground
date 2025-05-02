@@ -17,16 +17,15 @@ class CreateCharacter
         $this->characterRepository = (new RepositoryFactory('character'))->set();
     }
 
+    /**
+     * Create Character
+     * @param Character $character
+     * @return Character
+     */
+
     public function handle(Character $character): Character
     {
-        $character = $this->characterRepository->create(
-            $character->getUser(),
-            $character->getName(),
-            $character->getLife()
-        );
-        
-        echo "Character created: " . $character->getName();
-
+        $character = $this->characterRepository->create($character);
         return $character;
     }
 }
