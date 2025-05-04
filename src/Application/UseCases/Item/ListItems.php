@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rpg\Application\UseCases\Item;
@@ -7,7 +8,7 @@ use Rpg\Domain\Entity\Item;
 use Rpg\Infrastructure\Contract\ItemRepositoryContract;
 use Rpg\Infrastructure\Factory\RepositoryFactory;
 
-class CreateItem
+class ListItems
 {
     private ItemRepositoryContract $itemRepository;
 
@@ -17,14 +18,12 @@ class CreateItem
     }
 
     /**
-     * Create Item
-     * @param Item $item
-     * @return Item
+     * List Items
+     * @return Item[]
      */
 
-    public function handle(Item $item): Item
+    public function handle(): array
     {
-        $item = $this->itemRepository->create($item);
-        return $item;
+        return $this->itemRepository->list();
     }
 }

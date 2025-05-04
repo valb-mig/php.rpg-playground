@@ -4,43 +4,40 @@ declare(strict_types=1);
 
 namespace Rpg\Infrastructure\Contract;
 
-use Rpg\Domain\Entity\{
-    User,
-    Character
-};
-use Rpg\Domain\ValueObject\Life;
+use Rpg\Domain\Entity\Character;
+use Rpg\Domain\ValueObject\UUIDv4;
 
 interface CharacterRepositoryContract
 {
     /**
      * Create Character
-     * @param User $user
-     * @param string $name
-     * @param Life $life
+     * @param Character $character
      * @return Character
      */
 
-    public function create(User $user, string $name, Life $life): Character;
+    public function create(Character $character): Character;
 
     /**
      * Find Character
-     * @param string $uuid
+     * @param UUIDv4 $uuid
      * @return Character
      */
 
-    public function find(string $uuid): Character;
+    public function find(UUIDv4 $uuid): Character;
 
     /**
      * Update Character
-     * @return void
+     * @param Character $character
+     * @return Character
      */
 
-    public function update(): void;
+    public function update(Character $character): Character;
 
     /**
      * Delete Character
+     * @param UUIDv4 $uuid
      * @return void
      */
 
-    public function delete(): void;
+    public function delete(UUIDv4 $uuid): void;
 }

@@ -1,13 +1,14 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rpg\Application\UseCases\Item;
 
-use Rpg\Domain\Entity\Item;
+use Rpg\Domain\ValueObject\UUIDv4;
 use Rpg\Infrastructure\Contract\ItemRepositoryContract;
 use Rpg\Infrastructure\Factory\RepositoryFactory;
 
-class CreateItem
+class RemoveItem
 {
     private ItemRepositoryContract $itemRepository;
 
@@ -17,14 +18,13 @@ class CreateItem
     }
 
     /**
-     * Create Item
-     * @param Item $item
-     * @return Item
+     * Remove Item
+     * @param UUIDv4 $uuid
+     * @return void
      */
 
-    public function handle(Item $item): Item
+    public function handle(UUIDv4 $uuid): void
     {
-        $item = $this->itemRepository->create($item);
-        return $item;
+        $this->itemRepository->delete($uuid);
     }
 }

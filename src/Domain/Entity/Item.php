@@ -9,21 +9,25 @@ use Rpg\Domain\Trait\{
     WearebleTrait,
     ConditionTrait
 };
-use Symfony\Component\Uid\Uuid;
+use Rpg\Domain\ValueObject\UUIDv4;
 
 class Item 
 {
     use WearebleTrait;
     use ConditionTrait;
 
-    public string $uuid;
     protected Condition $condition;
 
     public function __construct(
-        protected string $name,
+        protected UUIDv4 $uuid,
+        protected string $name,        
         protected string $description,
         protected int    $weight = 0
     ) {
+        if(empty($uuid)) {
+            throw new \InvalidArgumentException('UUID cannot be empty');
+        }
+
         if(empty($name)) {
             throw new \InvalidArgumentException('Name cannot be empty');
         }
@@ -35,11 +39,9 @@ class Item
         if($weight < 0) {
             throw new \InvalidArgumentException('Weight cannot be negative');
         }
-
-        $this->uuid = Uuid::v4()->toString();
     }
 
-    public function getUUID(): string
+    public function getUUID(): UUIDv4
     {
         return $this->uuid;
     }
