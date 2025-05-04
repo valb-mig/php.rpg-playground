@@ -10,6 +10,13 @@ use Rpg\Domain\ValueObject\UUIDv4;
 interface ItemRepositoryContract
 {
     /**
+     * List Items
+     * @return Item[]
+     */
+
+    public function list(): array;
+
+    /**
      * Create Item
      * @param Item $item
      * @return Item

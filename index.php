@@ -4,7 +4,11 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Dotenv\Dotenv;
 use Rpg\Application\UseCases\Character\CreateCharacter;
-use Rpg\Application\UseCases\Item\CreateItem;
+use Rpg\Application\UseCases\Item\{
+    CreateItem,
+    ListItems,
+    RemoveItem
+};
 use Rpg\Application\UseCases\User\CreateUser;
 use Rpg\Domain\Entity\{
     User,
@@ -52,4 +56,20 @@ $sword->setCondition(
     )
 );
 
-dd($character);
+$shield = (new CreateItem())->handle(
+    new Item(
+        new UUIDv4(Uuid::v4()->toString()),
+        name: 'Shield',
+        description: 'A shield',
+        weight: 10
+    )
+);
+
+// [TODO] Update character inventory, how to persist information
+$character->getInventory()->addItem($sword);
+$character->getInventory()->addItem($shield);
+$character->getInventory()->removeItem($sword->getUUID());
+
+(new RemoveItem())->handle(new UUIDv4(Uuid::v4()->toString()));
+
+dd((new ListItems())->handle());

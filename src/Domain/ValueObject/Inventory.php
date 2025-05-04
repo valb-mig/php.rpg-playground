@@ -13,14 +13,24 @@ class Inventory
      */
 
     private array $items = [];
+    private int $current = 0;
 
     public function __construct(
         public int $max
-    ){}
+    ){
+        if(!is_numeric($max)) {
+            throw new \InvalidArgumentException('Max must be numeric');
+        }
+    }
     
     public function getItems()
     {
         return $this->items;
+    }
+
+    public function getCurrent(): int
+    {
+        return $this->current;
     }
 
     public function addItem(Item $item)
@@ -29,11 +39,13 @@ class Inventory
             throw new \InvalidArgumentException('Inventory is full');
         }
         
-        $this->items[$item->getUUID()] = $item;
+        $this->items[$item->getUUID()->getValue()] = $item;
+        $this->current = count($this->items);
     }
 
-    public function removeItem(Item $item)
+    public function removeItem(UUIDv4 $uuid)
     {
-        unset($this->items[$item->getUUID()]);
+        unset($this->items[$uuid->getValue()]);
+        $this->current = count($this->items);
     }
 }

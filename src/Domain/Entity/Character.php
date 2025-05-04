@@ -29,7 +29,7 @@ class Character
             throw new \InvalidArgumentException('Invalid character name');
         }
 
-        $this->inventory = new Inventory(0);
+        $this->inventory = new Inventory(10);
     }
 
     public function getUser(): User
