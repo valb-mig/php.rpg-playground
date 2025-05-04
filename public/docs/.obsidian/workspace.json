@@ -15,8 +15,8 @@
               "state": {
                 "file": "brainstorm.excalidraw.md"
               },
-              "icon": "excalidraw-icon",
-              "title": "brainstorm.excalidraw"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -25,10 +25,10 @@
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "usecases.excalidraw.md"
+                "file": "brainstorm.excalidraw.md"
               },
               "icon": "excalidraw-icon",
-              "title": "usecases.excalidraw"
+              "title": "brainstorm.excalidraw"
             }
           }
         ],
