@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rpg\Infrastructure\Factory;
@@ -16,6 +17,6 @@ class RepositoryFactory
 
     public function set()
     {
-        return new $this->repository;
+        return new $this->repository();
     }
 }

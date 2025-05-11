@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rpg\Application\UseCases\Character;
+namespace Rpg\Application\UseCases\Party\Character;
 
 use Rpg\Domain\Entity\Character;
 use Rpg\Infrastructure\Contract\CharacterRepositoryContract;
@@ -25,7 +25,6 @@ class CreateCharacter
 
     public function handle(Character $character): Character
     {
-        $character = $this->characterRepository->create($character);
-        return $character;
+        return $this->characterRepository->create($character);
     }
 }

@@ -11,7 +11,6 @@ use Rpg\Infrastructure\Contract\ItemRepositoryContract;
 class FakeItemRepository implements ItemRepositoryContract
 {
     /**
-     * List Items
      * @return Item[]
      */
 

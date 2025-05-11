@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rpg\Application\UseCases\Item;
+namespace Rpg\Application\UseCases\Party\Item;
 
 use Rpg\Domain\ValueObject\UUIDv4;
 use Rpg\Infrastructure\Contract\ItemRepositoryContract;

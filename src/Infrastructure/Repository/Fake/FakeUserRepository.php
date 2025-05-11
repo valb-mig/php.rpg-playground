@@ -25,7 +25,12 @@ class FakeUserRepository implements UserRepositoryContract
         return $user;
     }
 
-    public function delete(UUIDv4 $uuid): void
+    public function delete(User $user): void
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    public function list(): array
     {
         throw new \Exception('Not implemented');
     }

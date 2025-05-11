@@ -18,15 +18,20 @@ class Character
     public function __construct(
         protected User $user,
         protected UUIDv4 $uuid,
+        protected Party $party,
         protected string $name,
         protected Life $life
-    ){
-        if(empty($uuid)) {
+    ) {
+        if (empty($uuid)) {
             throw new \InvalidArgumentException('Invalid character uuid');
         }
 
-        if(empty($name)) {
+        if (empty($name)) {
             throw new \InvalidArgumentException('Invalid character name');
+        }
+
+        if (empty($party) || !($party instanceof Party)) {
+            throw new \InvalidArgumentException('Invalid party');
         }
 
         $this->inventory = new Inventory(10);
@@ -47,6 +52,11 @@ class Character
         return $this->name;
     }
 
+    public function getParty(): Party
+    {
+        return $this->party;
+    }
+
     public function getLife(): Life
     {
         return $this->life;
@@ -56,4 +66,4 @@ class Character
     {
         return $this->inventory;
     }
-}  
+}

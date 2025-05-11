@@ -8,7 +8,7 @@ use Rpg\Domain\Entity\User;
 use Rpg\Infrastructure\Contract\UserRepositoryContract;
 use Rpg\Infrastructure\Factory\RepositoryFactory;
 
-class CreateUser
+class DeleteUser
 {
     private UserRepositoryContract $userRepository;
 
@@ -18,14 +18,13 @@ class CreateUser
     }
 
     /**
-     * Create User
+     * Delete User
      * @param User $user
-     * @return User
+     * @return void
      */
 
-    public function handle(User $user): User
+    public function handle(User $user): void
     {
-        $user = $this->userRepository->create($user);
-        return $user;
+        $this->userRepository->delete($user);
     }
 }

@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Rpg\Application\UseCases\User;
 
 use Rpg\Domain\Entity\User;
+use Rpg\Domain\ValueObject\UUIDv4;
 use Rpg\Infrastructure\Contract\UserRepositoryContract;
 use Rpg\Infrastructure\Factory\RepositoryFactory;
 
-class CreateUser
+class FindUser
 {
     private UserRepositoryContract $userRepository;
 
@@ -18,14 +19,13 @@ class CreateUser
     }
 
     /**
-     * Create User
-     * @param User $user
+     * Delete User
+     * @param UUIDv4 $uuid
      * @return User
      */
 
-    public function handle(User $user): User
+    public function handle(UUIDv4 $uuid): User
     {
-        $user = $this->userRepository->create($user);
-        return $user;
+        return $this->userRepository->find($uuid);
     }
 }

@@ -8,7 +8,7 @@ use Rpg\Domain\Entity\User;
 use Rpg\Infrastructure\Contract\UserRepositoryContract;
 use Rpg\Infrastructure\Factory\RepositoryFactory;
 
-class CreateUser
+class ListUsers
 {
     private UserRepositoryContract $userRepository;
 
@@ -18,14 +18,12 @@ class CreateUser
     }
 
     /**
-     * Create User
-     * @param User $user
-     * @return User
+     * List Useres
+     * @return User[]
      */
 
-    public function handle(User $user): User
+    public function handle(User $user): array
     {
-        $user = $this->userRepository->create($user);
-        return $user;
+        return $this->userRepository->list();
     }
 }

@@ -9,6 +9,14 @@ use Rpg\Domain\ValueObject\UUIDv4;
 
 interface UserRepositoryContract
 {
+
+    /**
+     * List Users
+     * @return User[]
+     */
+
+    public function list(): array;
+
     /**
      * Create User
      * @param User $user
@@ -34,9 +42,9 @@ interface UserRepositoryContract
 
     /**
      * Delete User
-     * @param UUIDv4 $uuid
+     * @param User $user
      * @return void
      */
 
-    public function delete(UUIDv4 $uuid): void;
+    public function delete(User $user): void;
 }

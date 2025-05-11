@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rpg\Application\UseCases\Item;
+namespace Rpg\Application\UseCases\Party\Item;
 
 use Rpg\Domain\Entity\Item;
 use Rpg\Infrastructure\Contract\ItemRepositoryContract;

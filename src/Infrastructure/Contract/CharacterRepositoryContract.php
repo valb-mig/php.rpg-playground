@@ -35,9 +35,16 @@ interface CharacterRepositoryContract
 
     /**
      * Delete Character
-     * @param UUIDv4 $uuid
+     * @param Character $character
      * @return void
      */
 
-    public function delete(UUIDv4 $uuid): void;
+    public function delete(Character $character): void;
+
+    /**
+     * List Characters
+     * @return Character[]
+     */
+
+    public function list(): array;
 }
