@@ -9,8 +9,8 @@ class Life
     public function __construct(
         protected int $current,
         protected int $max
-    ){
-        if($current > $max) {
+    ) {
+        if ($current > $max) {
             throw new \InvalidArgumentException('Invalid life');
         }
     }
@@ -27,7 +27,7 @@ class Life
 
     public function increment(int $points): void
     {
-        if(($this->current + $points) > $this->max) {
+        if (($this->current + $points) > $this->max) {
             $this->current = $this->max;
             return;
         }
@@ -37,11 +37,11 @@ class Life
 
     public function decrement(int $points): void
     {
-        if(($this->current - $points) < 0) {
+        if (($this->current - $points) < 0) {
             $this->current = 0;
             return;
         }
 
         $this->current -= $points;
     }
-}  
+}

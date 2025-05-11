@@ -11,7 +11,7 @@ use Rpg\Domain\Trait\{
 };
 use Rpg\Domain\ValueObject\UUIDv4;
 
-class Item 
+class Item
 {
     use WearebleTrait;
     use ConditionTrait;
@@ -20,23 +20,23 @@ class Item
 
     public function __construct(
         protected UUIDv4 $uuid,
-        protected string $name,        
+        protected string $name,
         protected string $description,
         protected int    $weight = 0
     ) {
-        if(empty($uuid)) {
+        if (empty($uuid)) {
             throw new \InvalidArgumentException('UUID cannot be empty');
         }
 
-        if(empty($name)) {
+        if (empty($name)) {
             throw new \InvalidArgumentException('Name cannot be empty');
         }
 
-        if(empty($description)) {
+        if (empty($description)) {
             throw new \InvalidArgumentException('Description cannot be empty');
         }
 
-        if($weight < 0) {
+        if ($weight < 0) {
             throw new \InvalidArgumentException('Weight cannot be negative');
         }
     }

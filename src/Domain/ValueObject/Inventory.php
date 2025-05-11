@@ -17,12 +17,12 @@ class Inventory
 
     public function __construct(
         public int $max
-    ){
-        if(!is_numeric($max)) {
+    ) {
+        if (!is_numeric($max)) {
             throw new \InvalidArgumentException('Max must be numeric');
         }
     }
-    
+
     public function getItems()
     {
         return $this->items;
@@ -35,10 +35,10 @@ class Inventory
 
     public function addItem(Item $item)
     {
-        if(count($this->items) >= $this->max) {
+        if (count($this->items) >= $this->max) {
             throw new \InvalidArgumentException('Inventory is full');
         }
-        
+
         $this->items[$item->getUUID()->getValue()] = $item;
         $this->current = count($this->items);
     }

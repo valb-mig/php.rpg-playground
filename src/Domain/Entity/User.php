@@ -6,17 +6,17 @@ namespace Rpg\Domain\Entity;
 
 use Rpg\Domain\ValueObject\UUIDv4;
 
-class User 
+class User
 {
     public function __construct(
         protected UUIDv4 $uuid,
         protected string $name
     ) {
-        if(empty($name)) {
+        if (empty($name)) {
             throw new \InvalidArgumentException('Invalid name');
         }
 
-        if(empty($uuid)) {
+        if (empty($uuid)) {
             throw new \InvalidArgumentException('Invalid uuid');
         }
     }

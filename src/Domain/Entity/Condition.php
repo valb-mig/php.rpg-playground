@@ -6,14 +6,14 @@ namespace Rpg\Domain\Entity;
 
 use Rpg\Domain\Enum\ConditionStatus as Status;
 
-class Condition 
+class Condition
 {
     public function __construct(
         protected string $name,
         protected Status $status,
         protected int $value
-    ){
-        if(empty($name)) {
+    ) {
+        if (empty($name)) {
             throw new \InvalidArgumentException('Name cannot be empty');
         }
     }
