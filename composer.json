@@ -1,0 +1,15 @@
+{
+    "name": "valb/php.rpg-playground",
+    "autoload": {
+        "psr-4": {
+            "RPGPlayground\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "valb-mig",
+            "email": "valb.mig@gmail.com"
+        }
+    ],
+    "require": {}
+}
