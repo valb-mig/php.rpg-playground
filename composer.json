@@ -11,5 +11,10 @@
             "email": "valb.mig@gmail.com"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^13.0"
+    },
+     "scripts": {
+        "test": "./vendor/bin/phpunit tests/*"
+    }
 }
