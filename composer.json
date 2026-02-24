@@ -16,5 +16,8 @@
     },
      "scripts": {
         "test": "./vendor/bin/phpunit tests/*"
+    },
+    "require": {
+        "symfony/console": "^8.0"
     }
 }
