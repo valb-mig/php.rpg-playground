@@ -2,7 +2,7 @@
 
 namespace RPGPlayground\Domain\ValueObjects\App;
 
-class Result
+final class Result
 {
     private const SUCCESS = 'success';
     private const ERROR = 'error';
@@ -37,5 +37,21 @@ class Result
             $message,
             $data
         );
+    }
+
+    public function getData(){
+        return $this->data;
+    }
+
+    public function getMessage(){
+        return $this->message;
+    }
+
+    public function isError(){
+        return $this->type == self::ERROR;
+    }
+
+    public function isSuccess(){
+        return $this->type == self::SUCCESS;
     }
 }
