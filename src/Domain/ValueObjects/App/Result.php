@@ -3,56 +3,63 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Domain\ValueObjects\App;
 
+/**
+ * @template T
+ */
 final class Result
 {
     private const SUCCESS = 'success';
     private const ERROR = 'error';
 
+    /**
+     * @param T $data
+     */
     private function __construct(
-        private string $type,
-        private string $message, 
-        private $data
-    ){
-        if(!in_array($type, [self::SUCCESS, self::ERROR])) {
-            throw new \InvalidArgumentException('Type must be success or error');
-        }
+        private readonly string $type,
+        private readonly string $message,
+        private readonly mixed $data
+    ) {  }
 
-        $this->type = $type;
-        $this->message = $message;
-        $this->data = $data;
-    }
-
-    public static function success(string $message, $data = null): self
+    /**
+     * @template TValue
+     * @param TValue $data
+     * @return self<TValue>
+     */
+    public static function success(string $message, mixed $data = null): self
     {
-        return new self(
-            self::SUCCESS,
-            $message, 
-            $data
-        );
+        return new self(self::SUCCESS, $message, $data);
     }
 
-    public static function error(string $message, $data = null): self
+    /**
+     * @template TValue
+     * @param TValue $data
+     * @return self<TValue>
+     */
+    public static function error(string $message, mixed $data = null): self
     {
-        return new self(
-            self::ERROR,
-            $message,
-            $data
-        );
+        return new self(self::ERROR, $message, $data);
     }
 
-    public function getData(){
+    /**
+     * @return T
+     */
+    public function getData(): mixed
+    {
         return $this->data;
     }
 
-    public function getMessage(){
+    public function getMessage(): string
+    {
         return $this->message;
     }
 
-    public function isError(){
-        return $this->type == self::ERROR;
+    public function isError(): bool
+    {
+        return $this->type === self::ERROR;
     }
 
-    public function isSuccess(){
-        return $this->type == self::SUCCESS;
+    public function isSuccess(): bool
+    {
+        return $this->type === self::SUCCESS;
     }
 }
