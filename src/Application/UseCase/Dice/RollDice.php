@@ -8,6 +8,9 @@ use RPGPlayground\Domain\ValueObjects\App\Result;
 
 final class RollDice 
 {
+    /**
+     * @return Result<int|float>
+     */
     public function run(
         Dice $dice,
         array $modifiers,
@@ -16,8 +19,12 @@ final class RollDice
         try {
             $rollage = 0;
 
+            if($multiplier < 1) {
+                throw new \InvalidArgumentException("Invalid multiplier");
+            }
+
             for ($i=0; $i < $multiplier; $i++) { 
-                $rollage += rand(Dice::MINIMUN_VALUE, $dice->getDiceMaximum());
+                $rollage += rand(Dice::MINIMUM_VALUE, $dice->getDiceMaximum());
             }
 
             foreach ($modifiers as $modifier) {
@@ -39,8 +46,10 @@ final class RollDice
                     case '/':
                         if ($integer != 0) {
                             $rollage /= $integer;
-                        }
+                        } 
                     break;
+                    default:
+                        throw new \InvalidArgumentException("Invalid modifier: {$modifier}");
 
                 }
             }
