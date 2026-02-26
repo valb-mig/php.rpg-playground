@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace RPGPlayground\Infrastructure\EntryPoints\Console\Dice;
 
 use RPGPlayground\Application\UseCase\Dice\RollDice;
@@ -33,13 +35,11 @@ final class RollDiceCommand extends Command
         preg_match('/^(\d+)d(\d+)/', $diceParams, $baseMatches);
         preg_match_all('/[+\-\/x]\d+/', $diceParams, $modifierMatches);
 
-        $multiplier = $baseMatches[1];
-        $maximum    = $baseMatches[2];
+        $multiplier = (int) $baseMatches[1];
+        $maximum    = (int) $baseMatches[2];
         $modifiers  = $modifierMatches[0];
 
-        $dice = new Dice(
-            maximum: (int) $maximum
-        );
+        $dice = new Dice($maximum);
 
         $rollage = (new RollDice())->run(
             $dice,

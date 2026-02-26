@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RPGPlayground\Domain\Entities;
 
@@ -11,7 +12,7 @@ final class Dice
     ){
         if($maximum < self::MINIMUN_VALUE)
         {
-            throw new \InvalidArgumentException("Oxi");
+            throw new \InvalidArgumentException("Dice maximum must be at least " . self::MINIMUN_VALUE);
         }
     }
 
