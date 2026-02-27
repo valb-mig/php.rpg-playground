@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Tests\Domain\Entities;
 
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Domain\Entities\Dice;
+use RPGPlayground\Domain\ValueObjects\App\Dice;
 
 class DiceTest extends TestCase
 {
@@ -12,7 +12,7 @@ class DiceTest extends TestCase
     {
         $dice = new Dice(20);
         $this->assertInstanceOf(Dice::class, $dice);
-        $this->assertEquals(20, $dice->maximum);
+        $this->assertEquals(20, $dice->sides);
     }
 
     public function testInvalidDiceCreation(): void

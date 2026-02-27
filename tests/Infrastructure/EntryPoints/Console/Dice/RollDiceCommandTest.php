@@ -5,7 +5,6 @@ namespace RPGPlayground\Tests\Infrastructure\EntryPoints\Console\Dice;
 
 use PHPUnit\Framework\TestCase;
 use RPGPlayground\Infrastructure\EntryPoints\Console\Dice\RollDiceCommand;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
 final class RollDiceCommandTest extends TestCase
@@ -86,10 +85,10 @@ final class RollDiceCommandTest extends TestCase
         $this->tester->execute(['dice_params' => '20']);
     }
 
-    public function testThrowsExceptionWhenMaximumIsBelowMinimum(): void
+    public function testThrowsExceptionWhenSidesIsBelowMinimum(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Dice maximum must be at least');
+        $this->expectExceptionMessage('Dice sides must be at least');
 
         $this->tester->execute(['dice_params' => '1d0']);
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace RPGPlayground\Infrastructure\EntryPoints\Console\Dice;
 
 use RPGPlayground\Application\UseCase\Dice\RollDice;
-use RPGPlayground\Domain\Entities\Dice;
+use RPGPlayground\Domain\ValueObjects\App\Dice;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -55,14 +55,14 @@ final class RollDiceCommand extends Command
         }
 
         $multiplier = (int) ($baseMatches[1] ?: 1);
-        $maximum    = (int) $baseMatches[2];
+        $sides    = (int) $baseMatches[2];
 
         if ($multiplier < 1) {
             throw new \InvalidArgumentException('Multiplier must be at least 1');
         }
 
-        if ($maximum < Dice::MINIMUM_VALUE) {
-            throw new \InvalidArgumentException('Dice maximum must be at least ' . Dice::MINIMUM_VALUE);
+        if ($sides < Dice::MINIMUM_VALUE) {
+            throw new \InvalidArgumentException('Dice sides must be at least ' . Dice::MINIMUM_VALUE);
         }
     }
 
@@ -75,10 +75,10 @@ final class RollDiceCommand extends Command
         preg_match_all(self::MODIFIER_PATTERN, $diceParams, $modifierMatches);
 
         $multiplier = (int) ($baseMatches[1] ?: 1);
-        $maximum    = (int) $baseMatches[2];
+        $sides    = (int) $baseMatches[2];
         $modifiers  = $modifierMatches[0];
 
-        $rollage = (new RollDice())->run(new Dice($maximum), $modifiers, $multiplier);
+        $rollage = (new RollDice())->run(new Dice($sides), $modifiers, $multiplier);
 
         if ($rollage->isError()) {
             $io->error($rollage->getMessage());
@@ -87,7 +87,7 @@ final class RollDiceCommand extends Command
 
         $io->definitionList(
             ['Entry'     => $diceParams],
-            ['Dices'     => "{$multiplier}x d{$maximum}"],
+            ['Dices'     => "{$multiplier}x d{$sides}"],
             ['Modifiers' => count($modifiers) > 0 ? implode(' ', $modifiers) : 'None']
         );
 

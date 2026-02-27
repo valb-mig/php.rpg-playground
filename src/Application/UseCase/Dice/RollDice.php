@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Application\UseCase\Dice;
 
-use RPGPlayground\Domain\Entities\Dice;
-use RPGPlayground\Domain\ValueObjects\App\Result;
+use RPGPlayground\Domain\ValueObjects\App\Dice;
+use RPGPlayground\Domain\ValueObjects\Utils\Result;
 
 final class RollDice 
 {
@@ -24,7 +24,7 @@ final class RollDice
             }
 
             for ($i=0; $i < $multiplier; $i++) { 
-                $rollage += rand(Dice::MINIMUM_VALUE, $dice->maximum);
+                $rollage += rand(Dice::MINIMUM_VALUE, $dice->sides);
             }
 
             foreach ($modifiers as $modifier) {
@@ -54,7 +54,7 @@ final class RollDice
                 }
             }
 
-            return Result::success("d{$dice->maximum}: ", $rollage);
+            return Result::success("d{$dice->sides}: ", $rollage);
         } catch(\Exception $e) {
             return Result::error($e->getMessage());
         }
