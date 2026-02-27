@@ -1,0 +1,14 @@
+{
+    "[php]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.php$",
+                "cmd": "${workspaceFolder}/vendor/bin/mago format ${file}"
+            }
+        ]
+    }
+}
