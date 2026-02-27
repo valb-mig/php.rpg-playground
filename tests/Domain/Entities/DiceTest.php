@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Domain\Entities;
@@ -11,8 +12,8 @@ class DiceTest extends TestCase
     public function testDiceCreation(): void
     {
         $dice = new Dice(20);
-        $this->assertInstanceOf(Dice::class, $dice);
-        $this->assertEquals(20, $dice->sides);
+        static::assertInstanceOf(Dice::class, $dice);
+        static::assertSame(20, $dice->sides);
     }
 
     public function testInvalidDiceCreation(): void

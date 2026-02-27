@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace RPGPlayground\Application\UseCase\Dice\RollDice;
@@ -9,50 +10,51 @@ use RPGPlayground\Domain\ValueObjects\Utils\Result;
 final class RollDiceUseCase
 {
     /**
-     * @return Result<RollDiceUseCaseOutput>
+     * @return Result<RollDiceUseCaseOutput|null>
      */
-    public function run(RollDiceUseCaseInput $input): Result {
+    public function run(RollDiceUseCaseInput $input): Result
+    {
         try {
             $dice = $input->dice;
             $modifiers = $input->modifiers;
             $multiplier = $input->multiplier;
 
-            $rollage = 0;
+            $rollValue = 0;
 
-            for ($i=0; $i < $multiplier; $i++) { 
-                $rollage += RollDiceAction::roll($dice);
+            for ($i = 0; $i < $multiplier; $i++) {
+                $rollValue += RollDiceAction::roll($dice);
             }
 
             foreach ($modifiers as $modifier) {
-                $symbol  = $modifier[0]; 
+                $symbol = $modifier[0];
                 $integer = (int) substr($modifier, 1);
 
                 switch ($symbol) {
                     case '+':
-                        $rollage += $integer;
+                        $rollValue += $integer;
                         break;
                     case '-':
-                        $rollage -= $integer;
+                        $rollValue -= $integer;
                         break;
                     case '*':
                     case 'x':
-                        $rollage *= $integer;
+                        $rollValue *= $integer;
                         break;
                     case '/':
                     case '÷':
-                        if ($integer != 0) {
-                            $rollage /= $integer;
-                        } 
-                    break;
+                        if ($integer !== 0) {
+                            $rollValue /= $integer;
+                        }
+                        break;
                     default:
                         throw new \InvalidArgumentException("Invalid modifier: {$modifier}");
                 }
             }
 
-            $rollage = (int) ceil($rollage);
+            $rollValue = (int) ceil($rollValue);
 
-            return Result::success('Success on roll: ' . $rollage, new RollDiceUseCaseOutput($rollage));
-        } catch(\Exception $e) {
+            return Result::success('Success on roll: ' . $rollValue, new RollDiceUseCaseOutput($rollValue));
+        } catch (\Exception $e) {
             return Result::error($e->getMessage());
         }
     }

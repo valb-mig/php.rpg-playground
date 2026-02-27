@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace RPGPlayground\Domain\Actions\Dice;
@@ -12,7 +13,8 @@ final class RollDiceAction
      * @param Dice $dice The dice to roll.
      * @return int The result of the roll.
      */
-    public static function roll(Dice $dice): int {
+    public static function roll(Dice $dice): int
+    {
         return (int) ceil(rand(Dice::MINIMUM_VALUE, $dice->sides));
     }
 }
