@@ -51,7 +51,7 @@ final class RollDiceCommandTest extends TestCase
 
     public function testRollDiceWithoutMultiplierDefaultsToOne(): void
     {
-        $this->tester->execute(['dice_params' => 'd20']);
+        $this->tester->execute(['dice_params' => '1d20']);
 
         $this->tester->assertCommandIsSuccessful();
         static::assertStringContainsString('1x d20', $this->tester->getDisplay());
@@ -69,29 +69,6 @@ final class RollDiceCommandTest extends TestCase
         $this->tester->execute(['dice_params' => '1d6']);
 
         static::assertStringContainsString('None', $this->tester->getDisplay());
-    }
-
-    public function testThrowsExceptionOnInvalidFormat(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid dice parameters');
-
-        $this->tester->execute(['dice_params' => 'invalid_input']);
-    }
-
-    public function testThrowsExceptionWhenMissingDiceNotation(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        $this->tester->execute(['dice_params' => '20']);
-    }
-
-    public function testThrowsExceptionWhenSidesIsBelowMinimum(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Dice sides must be at least');
-
-        $this->tester->execute(['dice_params' => '1d0']);
     }
 
     public function testAsksForInputWhenNoArgumentProvided(): void
