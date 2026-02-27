@@ -1,35 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace RPGPlayground\Application\UseCase\Dice;
+namespace RPGPlayground\Application\UseCase\Dice\RollDice;
 
-use RPGPlayground\Domain\ValueObjects\App\Dice;
+use RPGPlayground\Domain\Actions\Dice\RollDiceAction;
 use RPGPlayground\Domain\ValueObjects\Utils\Result;
 
-final class RollDice 
+final class RollDiceUseCase
 {
     /**
-     * @return Result<int|float>
+     * @return Result<RollDiceUseCaseOutput>
      */
-    public function run(
-        Dice $dice,
-        array $modifiers,
-        int $multiplier = 1
-    ): Result {
+    public function run(RollDiceUseCaseInput $input): Result {
         try {
+            $dice = $input->dice;
+            $modifiers = $input->modifiers;
+            $multiplier = $input->multiplier;
+
             $rollage = 0;
 
-            if($multiplier < 1) {
-                throw new \InvalidArgumentException("Invalid multiplier");
-            }
-
             for ($i=0; $i < $multiplier; $i++) { 
-                $rollage += rand(Dice::MINIMUM_VALUE, $dice->sides);
+                $rollage += RollDiceAction::roll($dice);
             }
 
             foreach ($modifiers as $modifier) {
-                $symbol = $modifier[0]; 
-                
+                $symbol  = $modifier[0]; 
                 $integer = (int) substr($modifier, 1);
 
                 switch ($symbol) {
@@ -44,17 +39,19 @@ final class RollDice
                         $rollage *= $integer;
                         break;
                     case '/':
+                    case '÷':
                         if ($integer != 0) {
                             $rollage /= $integer;
                         } 
                     break;
                     default:
                         throw new \InvalidArgumentException("Invalid modifier: {$modifier}");
-
                 }
             }
 
-            return Result::success("d{$dice->sides}: ", $rollage);
+            $rollage = (int) ceil($rollage);
+
+            return Result::success('Success on roll: ' . $rollage, new RollDiceUseCaseOutput($rollage));
         } catch(\Exception $e) {
             return Result::error($e->getMessage());
         }

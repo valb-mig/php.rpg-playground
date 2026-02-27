@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Infrastructure\EntryPoints\Console\Dice;
 
-use RPGPlayground\Application\UseCase\Dice\RollDice;
+use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCase;
+use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCaseInput;
 use RPGPlayground\Domain\ValueObjects\App\Dice;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -78,7 +79,13 @@ final class RollDiceCommand extends Command
         $sides    = (int) $baseMatches[2];
         $modifiers  = $modifierMatches[0];
 
-        $rollage = (new RollDice())->run(new Dice($sides), $modifiers, $multiplier);
+        $useCase = new RollDiceUseCase();
+
+        $rollage = $useCase->run(new RollDiceUseCaseInput(
+            dice: new Dice($sides),
+            modifiers: $modifiers,
+            multiplier: $multiplier
+        ));
 
         if ($rollage->isError()) {
             $io->error($rollage->getMessage());
@@ -92,7 +99,7 @@ final class RollDiceCommand extends Command
         );
 
         $io->block(
-            messages: 'TOTAL: ' . $rollage->getData(),
+            messages: 'TOTAL: ' . $rollage->getData()->rollage,
             type: 'RESULT',
             style: 'fg=black;bg=green;options=bold',
             padding: true
