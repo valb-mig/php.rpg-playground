@@ -24,7 +24,7 @@ final class RollDice
             }
 
             for ($i=0; $i < $multiplier; $i++) { 
-                $rollage += rand(Dice::MINIMUM_VALUE, $dice->getDiceMaximum());
+                $rollage += rand(Dice::MINIMUM_VALUE, $dice->maximum);
             }
 
             foreach ($modifiers as $modifier) {
@@ -54,7 +54,7 @@ final class RollDice
                 }
             }
 
-            return Result::success("d{$dice->getDiceMaximum()}: ", $rollage);
+            return Result::success("d{$dice->maximum}: ", $rollage);
         } catch(\Exception $e) {
             return Result::error($e->getMessage());
         }

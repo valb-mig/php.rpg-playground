@@ -12,7 +12,7 @@ class DiceTest extends TestCase
     {
         $dice = new Dice(20);
         $this->assertInstanceOf(Dice::class, $dice);
-        $this->assertEquals(20, $dice->getDiceMaximum());
+        $this->assertEquals(20, $dice->maximum);
     }
 
     public function testInvalidDiceCreation(): void
