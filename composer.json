@@ -15,7 +15,7 @@
         "phpunit/phpunit": "^13.0"
     },
      "scripts": {
-        "test": "./vendor/bin/phpunit tests/*"
+        "test": "./vendor/bin/phpunit tests/* --colors=always --display-warnings"
     },
     "require": {
         "symfony/console": "^8.0",
