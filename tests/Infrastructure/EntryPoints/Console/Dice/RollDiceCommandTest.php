@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace RPGPlayground\Tests\Infrastructure\EntryPoints\Console\Dice;
@@ -21,7 +22,7 @@ final class RollDiceCommandTest extends TestCase
         $this->tester->execute(['dice_params' => '1d20']);
 
         $this->tester->assertCommandIsSuccessful();
-        $this->assertStringContainsString('RESULT', $this->tester->getDisplay());
+        static::assertStringContainsString('RESULT', $this->tester->getDisplay());
     }
 
     public function testRollDiceWithMultiplier(): void
@@ -29,7 +30,7 @@ final class RollDiceCommandTest extends TestCase
         $this->tester->execute(['dice_params' => '3d6']);
 
         $this->tester->assertCommandIsSuccessful();
-        $this->assertStringContainsString('3x d6', $this->tester->getDisplay());
+        static::assertStringContainsString('3x d6', $this->tester->getDisplay());
     }
 
     public function testRollDiceWithPositiveModifier(): void
@@ -37,7 +38,7 @@ final class RollDiceCommandTest extends TestCase
         $this->tester->execute(['dice_params' => '2d10+5']);
 
         $this->tester->assertCommandIsSuccessful();
-        $this->assertStringContainsString('+5', $this->tester->getDisplay());
+        static::assertStringContainsString('+5', $this->tester->getDisplay());
     }
 
     public function testRollDiceWithMultipleModifiers(): void
@@ -45,7 +46,7 @@ final class RollDiceCommandTest extends TestCase
         $this->tester->execute(['dice_params' => '2d10+5-3']);
 
         $this->tester->assertCommandIsSuccessful();
-        $this->assertStringContainsString('+5 -3', $this->tester->getDisplay());
+        static::assertStringContainsString('+5 -3', $this->tester->getDisplay());
     }
 
     public function testRollDiceWithoutMultiplierDefaultsToOne(): void
@@ -53,21 +54,21 @@ final class RollDiceCommandTest extends TestCase
         $this->tester->execute(['dice_params' => 'd20']);
 
         $this->tester->assertCommandIsSuccessful();
-        $this->assertStringContainsString('1x d20', $this->tester->getDisplay());
+        static::assertStringContainsString('1x d20', $this->tester->getDisplay());
     }
 
     public function testDisplayShowsCorrectEntry(): void
     {
         $this->tester->execute(['dice_params' => '2d6+3']);
 
-        $this->assertStringContainsString('2d6+3', $this->tester->getDisplay());
+        static::assertStringContainsString('2d6+3', $this->tester->getDisplay());
     }
 
     public function testDisplayShowsNoneWhenNoModifiers(): void
     {
         $this->tester->execute(['dice_params' => '1d6']);
 
-        $this->assertStringContainsString('None', $this->tester->getDisplay());
+        static::assertStringContainsString('None', $this->tester->getDisplay());
     }
 
     public function testThrowsExceptionOnInvalidFormat(): void
@@ -99,6 +100,6 @@ final class RollDiceCommandTest extends TestCase
         $this->tester->execute([]);
 
         $this->tester->assertCommandIsSuccessful();
-        $this->assertStringContainsString('2x d6', $this->tester->getDisplay());
+        static::assertStringContainsString('2x d6', $this->tester->getDisplay());
     }
 }

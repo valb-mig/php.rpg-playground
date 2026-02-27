@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 require __DIR__.'/vendor/autoload.php';
 
 use RPGPlayground\Infrastructure\EntryPoints\Console\Dice\RollDiceCommand;

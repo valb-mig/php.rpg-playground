@@ -1,0 +1,46 @@
+# Welcome to Mago!
+# For full documentation, see https://mago.carthage.software/tools/overview
+php-version = "8.5.0"
+
+[source]
+workspace = "."
+paths = ["src/", "tests/"]
+includes = ["vendor"]
+
+[formatter]
+print-width = 120
+tab-width = 4
+use-tabs = false
+excludes = ["vendor", "obsidian"]
+
+[linter]
+integrations = ["symfony", "phpunit"]
+excludes = ["vendor", "obsidian"]
+
+[linter.rules]
+ambiguous-function-call = { enabled = false }
+literal-named-argument = { enabled = false }
+halstead = { effort-threshold = 7000 }
+too-many-methods = {
+    exclude = ["/tests"]
+}
+
+[analyzer]
+plugins = []
+find-unused-definitions = true
+find-unused-expressions = true
+analyze-dead-code = true
+memoize-properties = true
+allow-possibly-undefined-array-keys = false
+check-throws = true
+check-missing-override = true
+find-unused-parameters = true
+strict-list-index-checks = true
+no-boolean-literal-comparison = true
+check-missing-type-hints = true
+register-super-globals = true
+excludes = ["obsidian"]
+ignore = [
+    { code = "missing-override-attribute" , in = "tests" },
+    { code = "unhandled-thrown-type",       in = "tests" }
+]

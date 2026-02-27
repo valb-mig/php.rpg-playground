@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace RPGPlayground\Domain\ValueObjects\Utils;
@@ -8,8 +9,8 @@ namespace RPGPlayground\Domain\ValueObjects\Utils;
  */
 final class Result
 {
-    private const SUCCESS = 'success';
-    private const ERROR = 'error';
+    private const string SUCCESS = 'success';
+    private const string ERROR = 'error';
 
     /**
      * @param T $data
@@ -17,13 +18,13 @@ final class Result
     private function __construct(
         private readonly string $type,
         private readonly string $message,
-        private readonly mixed $data
-    ) {  }
+        private readonly mixed $data = null,
+    ) {}
 
     /**
      * @template TValue
      * @param TValue $data
-     * @return self<TValue>
+     * @return self<TValue|null>
      */
     public static function success(string $message, mixed $data = null): self
     {
@@ -33,7 +34,7 @@ final class Result
     /**
      * @template TValue
      * @param TValue $data
-     * @return self<TValue>
+     * @return self<TValue|null>
      */
     public static function error(string $message, mixed $data = null): self
     {

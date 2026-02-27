@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Application\UseCase\Dice\RollDice;
@@ -18,22 +19,17 @@ class RollDiceUseCaseTest extends TestCase
 
         $rollDice = new RollDiceUseCase();
 
-        $result = $rollDice->run(
-            new RollDiceUseCaseInput(
-                $dice,
-                $modifiers,
-                $multiplier
-            )
-        );
+        $result = $rollDice->run(new RollDiceUseCaseInput($dice, $modifiers, $multiplier));
 
-        $this->assertFalse($result->isError());
-        $this->assertIsNumeric($result->getData()->rollage);
+        static::assertNotNull($result->getData());
+        static::assertFalse($result->isError());
+        static::assertIsNumeric($result->getData()?->rollValue);
     }
 
     public function testRollDiceWithInvalidMultiplier(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Invalid multiplier");
+        $this->expectExceptionMessage('Invalid multiplier');
 
         $dice = new Dice(20);
         $modifiers = ['+5', '-2', '*2', '/2'];
@@ -41,13 +37,7 @@ class RollDiceUseCaseTest extends TestCase
 
         $rollDice = new RollDiceUseCase();
 
-        $result = $rollDice->run(
-            new RollDiceUseCaseInput(
-                $dice,
-                $modifiers,
-                $multiplier
-            )
-        );
+        $result = $rollDice->run(new RollDiceUseCaseInput($dice, $modifiers, $multiplier));
     }
 
     public function testRollDiceWithInvalidModifier(): void
@@ -58,15 +48,9 @@ class RollDiceUseCaseTest extends TestCase
 
         $rollDice = new RollDiceUseCase();
 
-        $result = $rollDice->run(
-            new RollDiceUseCaseInput(
-                $dice,
-                $modifiers,
-                $multiplier
-            )
-        );
+        $result = $rollDice->run(new RollDiceUseCaseInput($dice, $modifiers, $multiplier));
 
-        $this->assertTrue($result->isError());
-        $this->assertStringContainsString('Invalid modifier: %3', $result->getMessage());
+        static::assertTrue($result->isError());
+        static::assertStringContainsString('Invalid modifier: %3', $result->getMessage());
     }
 }
