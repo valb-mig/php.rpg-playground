@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Tests\Infrastructure\EntryPoints\Console\Dice;
+namespace Tests\Infrastructure\EntryPoints\Console\Dice;
 
 use PHPUnit\Framework\TestCase;
 use RPGPlayground\Infrastructure\EntryPoints\Console\Dice\RollDiceCommand;
