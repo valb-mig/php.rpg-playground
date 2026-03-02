@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "cf36652d1066ff41",
+        "id": "5af48836b83d32ae",
         "type": "tabs",
         "children": [
           {
-            "id": "ecf914d3703456f3",
+            "id": "ca2d8013c7331e8e",
             "type": "leaf",
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "Excalidraw/Drawing 2026-02-27 09.49.15.excalidraw.md"
+                "file": "Excalidraw/Overall.md"
               },
               "icon": "excalidraw-icon",
-              "title": "Drawing 2026-02-27 09.49.15.excalidraw"
+              "title": "Overall"
             }
           }
         ]
@@ -42,7 +42,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Explorador de arquivos"
             }
           },
           {
@@ -76,8 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 233.5,
-    "collapsed": true
+    "width": 233.5
   },
   "right": {
     "id": "7ca2f4f0bbdfa382",
@@ -183,15 +182,21 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "ecf914d3703456f3",
+  "active": "ca2d8013c7331e8e",
   "lastOpenFiles": [
-    "Excalidraw/Drawing 2026-02-27 09.49.15.excalidraw.md",
+    "Idea.md",
     "Design.md",
-    "Excalidraw",
+    "TODO.md",
+    "Process.md",
+    "Excalidraw/Overall.md",
+    "Domain/Characters.md",
     "Domain/Dice.md",
+    "Domain/Session.md",
     "Domain/World.md",
     "Domain/NPC.md",
-    "Domain/Characters.md",
+    "Excalidraw/Drawing 2026-03-02 14.34.45.excalidraw.md",
+    "Sem título",
+    "Excalidraw",
     "Untitled",
     "Domain/NPC/Enemy.md",
     "Domain/NPC",
