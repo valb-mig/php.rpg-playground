@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Infrastructure\EntryPoints\Console\Session;
 
+use Monolog\Logger;
 use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionUseCase;
 use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionUseCaseInput;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -16,6 +17,12 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 #[AsCommand(name: 'session:start', description: 'Start a new session', usages: ['session:start'])]
 final class StartSessionCommand extends Command
 {
+    public function __construct(
+        private Logger $logger,
+    ) {
+        parent::__construct();
+    }
+
     #[\Override]
     protected function configure(): void
     {

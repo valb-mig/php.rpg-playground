@@ -21,6 +21,7 @@
     },
     "require": {
         "symfony/console": "^8.0",
-        "symfony/var-dumper": "^8.0"
+        "symfony/var-dumper": "^8.0",
+        "monolog/monolog": "^3.10"
     }
 }
