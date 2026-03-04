@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Composer Test",
+      "type": "shell",
+      "command": "composer test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "tests"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "MAGO Analyse",
+      "type": "shell",
+      "command": "mago analyse",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "analysis"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}
