@@ -12,12 +12,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Create Weekly TODO Issues
+      - name: Auto create issues from .github/issues.json
         uses: actions/github-script@v7
         with:
           script: |
             const todos = require('.github/issues.json');
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'all'
+            });
+
+            const existingTitles = existing.data.map(i => i.title);
+
             for (const todo of todos) {
+              if (existingTitles.includes(todo.title)) continue;
+              
               await github.rest.issues.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
