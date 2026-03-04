@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Infrastructure\EntryPoints\Console\Dice;
 
-use Monolog\Logger;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCase;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCaseInput;
 use RPGPlayground\Domain\ValueObjects\App\Dice;
+use RPGPlayground\Infrastructure\Handler\LogHandler;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -20,12 +20,6 @@ final class RollDiceCommand extends Command
 {
     private const string DICE_PATTERN = '/^(\d*)d(\d+)/';
     private const string MODIFIER_PATTERN = '/[+\-\/x]\d+/';
-
-    public function __construct(
-        private Logger $logger,
-    ) {
-        parent::__construct();
-    }
 
     #[\Override]
     protected function configure(): void
@@ -144,17 +138,16 @@ final class RollDiceCommand extends Command
                 padding: true,
             );
 
-            $this->logger->info('Rolled dice', ['roll_value' => $resultRollValue->rollValue]);
+            LogHandler::dispatch('info', 'Rolled dice', [
+                'dice_params' => $diceParams,
+                'roll_value' => $resultRollValue->rollValue,
+            ]);
 
             return Command::SUCCESS;
         } catch (\InvalidArgumentException $e) {
             $io = new SymfonyStyle($input, $output);
             $io->error($e->getMessage());
-
-            $this->logger->error('Invalid dice parameters: ' . $e->getMessage(), ['input' => $input->getArgument(
-                'dice_params',
-            )]);
-
+            LogHandler::dispatch('error', 'Roll dice command', ['exception' => $e->getMessage()]);
             return Command::FAILURE;
         }
     }

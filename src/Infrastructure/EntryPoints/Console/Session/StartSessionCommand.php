@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Infrastructure\EntryPoints\Console\Session;
 
-use Monolog\Logger;
 use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionUseCase;
 use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionUseCaseInput;
+use RPGPlayground\Infrastructure\Handler\LogHandler;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,12 +17,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 #[AsCommand(name: 'session:start', description: 'Start a new session', usages: ['session:start'])]
 final class StartSessionCommand extends Command
 {
-    public function __construct(
-        private Logger $logger,
-    ) {
-        parent::__construct();
-    }
-
     #[\Override]
     protected function configure(): void
     {
@@ -102,10 +96,14 @@ final class StartSessionCommand extends Command
                 padding: true,
             );
 
+            LogHandler::dispatch('info', 'Started session', [
+                'session_id' => $resultStartSession->session->identifier->value,
+            ]);
             return Command::SUCCESS;
         } catch (\InvalidArgumentException $e) {
             $io = new SymfonyStyle($input, $output);
             $io->error($e->getMessage());
+            LogHandler::dispatch('error', 'Start session command', ['exception' => $e->getMessage()]);
             return Command::FAILURE;
         }
     }
