@@ -10,5 +10,7 @@
                 "cmd": "${workspaceFolder}/vendor/bin/mago format ${file}"
             }
         ]
-    }
+    },
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.shellIntegration.enabled": true
 }
