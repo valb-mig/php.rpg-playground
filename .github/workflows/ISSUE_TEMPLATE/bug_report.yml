@@ -1,0 +1,33 @@
+name: "(bug): Bug Report"
+description: Report a bug in the project
+labels: ["bug"]             
+assignees: ["valb-mig"]
+
+body:
+  - type: input
+    id: description
+    attributes:
+      label: What's the bug?
+      placeholder: "Describe the bug in detail..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproducao
+    attributes:
+      label: How to reproduce?
+      description: Step-by-step instructions to reach the bug
+      value: |
+        1. Go to...
+        2. Click on...
+        3. See the error
+
+  - type: dropdown
+    id: severidade
+    attributes:
+      label: Severity
+      options:
+        - Critical
+        - High
+        - Medium
+        - Low

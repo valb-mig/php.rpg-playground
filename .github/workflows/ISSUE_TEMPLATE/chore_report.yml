@@ -1,0 +1,43 @@
+name: "(chore): Chore / Maintenance"
+description: Dependency updates, config changes, tooling, CI
+labels: ["chore"]
+assignees: []
+
+body:
+  - type: input
+    id: title
+    attributes:
+      label: What needs to be done?
+      placeholder: "Ex: update PHPUnit to v11"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why is this needed?
+      placeholder: Security patch, deprecation, outdated tooling...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type of chore
+      options:
+        - Dependency update
+        - CI/CD change
+        - Config / tooling
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: No production behavior is changed
+          required: true
+        - label: CI passes after the change

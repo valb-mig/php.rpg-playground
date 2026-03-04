@@ -1,0 +1,49 @@
+name: "(test): Missing or Failing Tests"
+description: Report missing test coverage or broken tests
+labels: ["test"]
+assignees: []
+
+body:
+  - type: input
+    id: location
+    attributes:
+      label: What is not tested or failing?
+      placeholder: "Ex: src/Inventory/InventoryService.php has no unit tests"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Missing test coverage
+        - Failing test
+        - Flaky test
+        - Needs integration test
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the gap or failure
+      placeholder: What scenario is not covered? What is the failing output?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested test cases
+      placeholder: |
+        - should return null when inventory is empty
+        - should throw exception when item does not exist
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I checked the current test suite before opening this
+          required: true

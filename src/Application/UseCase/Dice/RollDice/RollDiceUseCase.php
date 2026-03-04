@@ -22,7 +22,10 @@ final class RollDiceUseCase
 
             $rollValue = 0;
 
-            // WIP: Enhance performance for large multipliers by processing rolls in chunks and using async tasks
+            // WIP: Async and enhance performace
+            // Enhance performance for large multipliers by processing rolls in chunks and using async tasks
+            // Labels: refactor
+            // Assignees: valb-mig
             $awaitables = [];
             foreach ($this->generateChunks($multiplier, 250_000) as $chunkSize) {
                 $awaitables[] = Async\run(function () use ($chunkSize, $dice): int {

@@ -1,0 +1,47 @@
+name: "(docs): Documentation"
+description: Missing, incorrect or outdated documentation
+labels: ["documentation"]
+assignees: []
+
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Where is the documentation issue?
+      placeholder: "Ex: README, wiki, inline PHPDoc on src/Player.php"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type of issue
+      options:
+        - Missing documentation
+        - Incorrect documentation
+        - Outdated documentation
+        - Needs better examples
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the problem
+      placeholder: What is wrong or missing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested correction
+      placeholder: What should it say instead?
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I checked the existing docs before opening this
+          required: true
