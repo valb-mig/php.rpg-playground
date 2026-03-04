@@ -1,0 +1,26 @@
+name: Auto Issue Creator
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  create-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create Weekly TODO Issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const todos = require('.github/issues.json');
+            for (const todo of todos) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: todo.title,
+                body: todo.body,
+                labels: todo.labels
+              });
+            }

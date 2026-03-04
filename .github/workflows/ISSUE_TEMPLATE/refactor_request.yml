@@ -1,0 +1,46 @@
+name: "(refactor): Refactor"
+description: Propose a code refactor without changing behavior
+labels: ["refactor"]
+assignees: []
+
+body:
+  - type: input
+    id: location
+    attributes:
+      label: What needs to be refactored?
+      placeholder: "Ex: src/Combat/CombatController.php"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why does this need refactoring?
+      placeholder: Describe the current problem (coupling, complexity, duplication...)
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach
+      placeholder: How should it be restructured?
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and side effects
+      placeholder: What could break? What needs extra testing?
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Existing tests still pass after this change
+          required: true
+        - label: No behavior change is introduced
+          required: true
+        - label: New tests are added if needed

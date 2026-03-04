@@ -1,0 +1,46 @@
+name: "(feat): Feature Request"
+description: Suggest a new feature or improvement
+labels: ["enhancement"]
+assignees: []
+
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem this feature solves
+      placeholder: "Ex: there is no way to filter items by rarity in the inventory"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      placeholder: Describe what you want to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      placeholder: Any workarounds or other approaches you have thought of?
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - High
+        - Medium
+        - Low
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched for similar feature requests before opening this one
+          required: true
+        - label: This feature aligns with the project scope
+          required: true

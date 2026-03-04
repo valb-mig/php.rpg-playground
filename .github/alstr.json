@@ -1,0 +1,23 @@
+{
+  "languages": [
+    {
+      "language": "PHP",
+      "markers": [
+        {
+          "type": "line",
+          "pattern": "//"
+        }
+      ]
+    }
+  ],
+  "identifiers": [
+    {
+      "name": "TODO",
+      "labels": ["todo"]
+    },
+    {
+      "name": "WIP",
+      "labels": ["wip"]
+    }
+  ]
+}
