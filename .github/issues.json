@@ -1,7 +1,12 @@
 [
     {
-        "title": "Test",
-        "body": "Testing auto issue creation",
-        "labels": ["documentation"]
+        "title": "(refactor): Return types and throwing exceptions",
+        "body": "Its necessary to update the return types of the use case and its input, as well as to throw exceptions for invalid input. This will improve the robustness and clarity of the code.",
+        "labels": ["refactor"]
+    },
+    {
+        "title": "(refactor): Command structure",
+        "body": "Update the command structure to something more clear and abstract, too many information in one single command can be overwhelming and hard to maintain. Consider breaking it down into smaller, more focused commands or methods.",
+        "labels": ["refactor"]
     }
 ]

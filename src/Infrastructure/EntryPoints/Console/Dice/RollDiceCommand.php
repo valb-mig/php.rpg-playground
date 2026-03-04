@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Infrastructure\EntryPoints\Console\Dice;
 
+use Monolog\Level;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCase;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCaseInput;
 use RPGPlayground\Domain\ValueObjects\App\Dice;
@@ -138,7 +139,7 @@ final class RollDiceCommand extends Command
                 padding: true,
             );
 
-            LogHandler::dispatch('info', 'Rolled dice', [
+            LogHandler::dispatch(Level::Info, 'Rolled dice', [
                 'dice_params' => $diceParams,
                 'roll_value' => $resultRollValue->rollValue,
             ]);
@@ -147,7 +148,7 @@ final class RollDiceCommand extends Command
         } catch (\InvalidArgumentException $e) {
             $io = new SymfonyStyle($input, $output);
             $io->error($e->getMessage());
-            LogHandler::dispatch('error', 'Roll dice command', ['exception' => $e->getMessage()]);
+            LogHandler::dispatch(Level::Error, 'Roll dice command', ['exception' => $e->getMessage()]);
             return Command::FAILURE;
         }
     }

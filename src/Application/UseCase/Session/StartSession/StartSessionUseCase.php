@@ -12,7 +12,7 @@ use RPGPlayground\Domain\ValueObjects\Utils\Result;
 final class StartSessionUseCase
 {
     /**
-     * @return Result<StartSessionUseCaseOutput>
+     * @return Result<StartSessionUseCaseOutput|null>
      */
     public function run(StartSessionUseCaseInput $input): Result
     {
@@ -27,8 +27,8 @@ final class StartSessionUseCase
                 'Session (' . $resultStartSession->session->identifier->value . ') started successfully.',
                 $resultStartSession,
             );
-        } catch (\Exception $e) {
-            return Result::error(message: 'Failed to start session: ' . $e->getMessage());
+        } catch (\InvalidArgumentException $e) {
+            return Result::error('Failed to start session' . $e->getMessage());
         }
     }
 }

@@ -30,7 +30,7 @@ final class RollDiceUseCase
             foreach ($this->generateChunks($multiplier, 250_000) as $chunkSize) {
                 $awaitables[] = Async\run(function () use ($chunkSize, $dice): int {
                     $sum = 0;
-                    for ($i = 0; $i < $chunkSize; $i++) {
+                    for ($i = 0; $i < (int) $chunkSize; $i++) {
                         $sum += RollDiceAction::roll($dice);
                     }
                     return $sum;
@@ -73,6 +73,7 @@ final class RollDiceUseCase
         }
     }
 
+    /** @return \Generator<int, int, never, void> */
     private function generateChunks(int $multiplier, int $chunkSize): \Generator
     {
         $remaining = $multiplier;

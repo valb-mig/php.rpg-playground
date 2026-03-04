@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Infrastructure\EntryPoints\Console\Session;
 
+use Monolog\Level;
 use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionUseCase;
 use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionUseCaseInput;
 use RPGPlayground\Infrastructure\Handler\LogHandler;
@@ -71,6 +72,12 @@ final class StartSessionCommand extends Command
 
             $resultStartSession = $useCase->run(new StartSessionUseCaseInput(name: $name));
 
+            if (!isset($resultStartSession)) {
+                $io->error('An unexpected error occurred while starting the session.');
+                LogHandler::dispatch(Level::Error, 'Start session command', ['error' => 'Result is null']);
+                return Command::FAILURE;
+            }
+
             if ($resultStartSession->isError()) {
                 $io->error($resultStartSession->getMessage());
                 return Command::FAILURE;
@@ -78,8 +85,9 @@ final class StartSessionCommand extends Command
 
             $resultStartSession = $resultStartSession->getData();
 
-            if (!$resultStartSession) {
+            if (!isset($resultStartSession)) {
                 $io->error('An unexpected error occurred while starting the session.');
+                LogHandler::dispatch(Level::Error, 'Start session command', ['error' => 'Result data is null']);
                 return Command::FAILURE;
             }
 
@@ -96,14 +104,14 @@ final class StartSessionCommand extends Command
                 padding: true,
             );
 
-            LogHandler::dispatch('info', 'Started session', [
+            LogHandler::dispatch(Level::Info, 'Started session', [
                 'session_id' => $resultStartSession->session->identifier->value,
             ]);
             return Command::SUCCESS;
         } catch (\InvalidArgumentException $e) {
             $io = new SymfonyStyle($input, $output);
             $io->error($e->getMessage());
-            LogHandler::dispatch('error', 'Start session command', ['exception' => $e->getMessage()]);
+            LogHandler::dispatch(Level::Error, 'Start session command', ['exception' => $e->getMessage()]);
             return Command::FAILURE;
         }
     }

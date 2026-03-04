@@ -24,7 +24,7 @@ final class Result
     /**
      * @template TValue
      * @param TValue $data
-     * @return self<TValue|null>
+     * @return self<TValue>
      */
     public static function success(string $message, mixed $data = null): self
     {
