@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Application\UseCase\Dice\RollDice;
 
+use Psl\Async;
 use RPGPlayground\Domain\Actions\Dice\RollDiceAction;
 use RPGPlayground\Domain\ValueObjects\Utils\Result;
 
@@ -21,9 +22,19 @@ final class RollDiceUseCase
 
             $rollValue = 0;
 
-            for ($i = 0; $i < $multiplier; $i++) {
-                $rollValue += RollDiceAction::roll($dice);
+            // WIP: Enhance performance for large multipliers by processing rolls in chunks and using async tasks
+            $awaitables = [];
+            foreach ($this->generateChunks($multiplier, 250_000) as $chunkSize) {
+                $awaitables[] = Async\run(function () use ($chunkSize, $dice): int {
+                    $sum = 0;
+                    for ($i = 0; $i < $chunkSize; $i++) {
+                        $sum += RollDiceAction::roll($dice);
+                    }
+                    return $sum;
+                });
             }
+
+            $rollValue = array_sum(Async\all($awaitables));
 
             foreach ($modifiers as $modifier) {
                 $symbol = $modifier[0];
@@ -56,6 +67,15 @@ final class RollDiceUseCase
             return Result::success('Success on roll: ' . $rollValue, new RollDiceUseCaseOutput($rollValue));
         } catch (\Exception $e) {
             return Result::error($e->getMessage());
+        }
+    }
+
+    private function generateChunks(int $multiplier, int $chunkSize): \Generator
+    {
+        $remaining = $multiplier;
+        while ($remaining > 0) {
+            yield min($chunkSize, $remaining);
+            $remaining -= $chunkSize;
         }
     }
 }
