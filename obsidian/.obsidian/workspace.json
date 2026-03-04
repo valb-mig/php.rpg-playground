@@ -76,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 233.5
+    "width": 233.5,
+    "collapsed": true
   },
   "right": {
     "id": "7ca2f4f0bbdfa382",
@@ -184,15 +185,15 @@
   },
   "active": "ca2d8013c7331e8e",
   "lastOpenFiles": [
-    "Process.md",
-    "Idea.md",
-    "Design.md",
-    "TODO.md",
-    "Excalidraw/Overall.md",
-    "Domain/Characters.md",
     "Domain/Dice.md",
     "Domain/Session.md",
+    "Design.md",
+    "Idea.md",
+    "Process.md",
+    "TODO.md",
     "Domain/World.md",
+    "Domain/Characters.md",
+    "Excalidraw/Overall.md",
     "Domain/NPC.md",
     "Excalidraw/Drawing 2026-03-02 14.34.45.excalidraw.md",
     "Sem título",
