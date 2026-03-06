@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Domain\Actions\Dice;
 
-use RPGPlayground\Domain\ValueObjects\App\Dice;
+use RPGPlayground\Domain\ValueObjects\Dice;
 
 final class RollDiceAction
 {

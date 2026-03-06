@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Domain\Entities;
 
-use RPGPlayground\Domain\ValueObjects\Utils\Identifier;
+use RPGPlayground\Core\Utils\Identifier;
 
 final class Session
 {

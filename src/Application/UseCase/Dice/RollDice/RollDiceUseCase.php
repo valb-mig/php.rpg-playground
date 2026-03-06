@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace RPGPlayground\Application\UseCase\Dice\RollDice;
 
 use Psl\Async;
+use RPGPlayground\Core\Utils\Result;
 use RPGPlayground\Domain\Actions\Dice\RollDiceAction;
-use RPGPlayground\Domain\ValueObjects\Utils\Result;
 
 final class RollDiceUseCase
 {
     /**
-     * @return Result<RollDiceUseCaseOutput|null>
+     * @return Result<RollDiceUseCaseOutput>
      */
     public function run(RollDiceUseCaseInput $input): Result
     {

@@ -7,7 +7,7 @@ namespace RPGPlayground\Infrastructure\EntryPoints\Console\Session;
 use Monolog\Level;
 use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionUseCase;
 use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionUseCaseInput;
-use RPGPlayground\Infrastructure\Handler\LogHandler;
+use RPGPlayground\Core\Handler\LogHandler;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

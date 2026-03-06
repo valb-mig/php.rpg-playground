@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Application\UseCase\Dice\RollDice;
 
-use RPGPlayground\Domain\ValueObjects\App\Dice;
+use RPGPlayground\Domain\ValueObjects\Dice;
 
 final class RollDiceUseCaseInput
 {

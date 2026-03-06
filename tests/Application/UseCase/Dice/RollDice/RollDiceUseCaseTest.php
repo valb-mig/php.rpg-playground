@@ -7,7 +7,7 @@ namespace Tests\Application\UseCase\Dice\RollDice;
 use PHPUnit\Framework\TestCase;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCase;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCaseInput;
-use RPGPlayground\Domain\ValueObjects\App\Dice;
+use RPGPlayground\Domain\ValueObjects\Dice;
 
 class RollDiceUseCaseTest extends TestCase
 {

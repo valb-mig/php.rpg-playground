@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\ValueObjects\App;
+namespace RPGPlayground\Domain\ValueObjects;
 
 final class Dice
 {

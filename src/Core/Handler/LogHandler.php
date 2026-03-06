@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Infrastructure\Handler;
+namespace RPGPlayground\Core\Handler;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Level;
@@ -42,7 +42,6 @@ final class LogHandler
         try {
             self::$instance?->log($level, $message, $context);
         } catch (\Throwable $e) {
-            // Handle logging errors gracefully, e.g., by writing to a fallback log file
             error_log('Logging error: ' . $e->getMessage());
         }
     }

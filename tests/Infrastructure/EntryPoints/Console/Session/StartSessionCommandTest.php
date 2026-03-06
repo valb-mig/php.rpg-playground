@@ -6,12 +6,6 @@ namespace Tests\Infrastructure\EntryPoints\Console\Session;
 
 use PHPUnit\Framework\TestCase;
 use RPGPlayground\Infrastructure\EntryPoints\Console\Session\StartSessionCommand;
-use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Tester\CommandTester;
 
 final class StartSessionCommandTest extends TestCase
