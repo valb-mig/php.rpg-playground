@@ -45,6 +45,7 @@ final class DiceModifier
     /**
      * @param int $rollValue
      * @return int
+     * @throws \LogicException if an invalid symbol somehow bypasses fromString
      */
     public function apply(int $rollValue): int
     {
@@ -52,7 +53,8 @@ final class DiceModifier
             '+' => $rollValue + $this->value,
             '-' => $rollValue - $this->value,
             '*', 'x' => $rollValue * $this->value,
-            '/' => $this->value !== 0 ? $rollValue / $this->value : $rollValue,
+            '/' => $rollValue / $this->value,
+            default => throw new \LogicException("Unexpected symbol: {$this->symbol}"),
         });
     }
 }

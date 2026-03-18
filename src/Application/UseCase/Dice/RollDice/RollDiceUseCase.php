@@ -12,7 +12,12 @@ use RPGPlayground\Domain\Actions\Dice\RollDiceAction;
 
 final class RollDiceUseCase
 {
-    /** @return Result<RollDiceOutput> */
+    /**
+     * @param  RollDiceInput $input
+     * @return Result<RollDiceOutput>
+     * @throws \Random\RandomException if the system entropy source fails.
+     * @throws \LogicException if an invalid symbol somehow bypasses DiceModifier::fromString.
+     */
     public static function handle(RollDiceInput $input): Result
     {
         $total = 0;
