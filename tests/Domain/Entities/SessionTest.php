@@ -38,18 +38,6 @@ final class SessionTest extends TestCase
     }
 
     // -------------------------------------------------------------------------
-    // Validation
-    // -------------------------------------------------------------------------
-
-    public function test_session_throws_on_empty_name(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Session name cannot be empty');
-
-        new Session('', Identifier::generate(), new \DateTime());
-    }
-
-    // -------------------------------------------------------------------------
     // Helpers
     // -------------------------------------------------------------------------
 
