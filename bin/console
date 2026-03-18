@@ -7,9 +7,7 @@ require __DIR__ . '/../bootstrap.php';
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use RPGPlayground\Infrastructure\EntryPoints\Console\Dice\RollDiceCommand;
-use RPGPlayground\Infrastructure\EntryPoints\Console\Session\StartSessionCommand;
-use RPGPlayground\Infrastructure\Handler\LogHandler;
+use RPGPlayground\Core\Handler\LogHandler;
 use Symfony\Component\Console\Application;
 
 LogHandler::bind(new Logger('console'));
@@ -18,8 +16,6 @@ LogHandler::stream(new StreamHandler(__DIR__ . '/../logs/console.log'));
 $application = new Application();
 
 $application->addCommands([
-    new RollDiceCommand(),
-    new StartSessionCommand(),
 ]);
 
 $application->run();
