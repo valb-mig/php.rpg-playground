@@ -6,7 +6,7 @@ namespace RPGPlayground\Application\UseCase\Session\StartSession;
 
 use RPGPlayground\Domain\Entities\Session;
 
-final class StartSessionUseCaseOutput
+final class StartSessionOutput
 {
     public function __construct(
         public readonly Session $session,
