@@ -15,6 +15,6 @@ final class RollDiceAction
      */
     public static function roll(Dice $dice): int
     {
-        return (int) ceil(rand(Dice::MINIMUM_VALUE, $dice->sides));
+        return random_int(Dice::MINIMUM_VALUE, $dice->sides);
     }
 }
