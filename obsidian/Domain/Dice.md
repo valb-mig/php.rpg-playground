@@ -1,1 +1,0 @@
-Gives random integer values values, with a minimum of 1 and a maximum of N, the value of the dice can be modified with other values, not like bonuses, because dont have a type, its only an incremental for the dice values.

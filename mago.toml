@@ -41,6 +41,7 @@ check-missing-type-hints = true
 register-super-globals = true
 excludes = ["obsidian"]
 ignore = [
-    { code = "missing-override-attribute" , in = "tests" },
-    { code = "unhandled-thrown-type",       in = "tests" }
+    { code = "missing-override-attribute" ,    in = "tests" },
+    { code = "unhandled-thrown-type",          in = "tests" },
+    { code = "possibly-undefined-array-index", in = "tests" }
 ]

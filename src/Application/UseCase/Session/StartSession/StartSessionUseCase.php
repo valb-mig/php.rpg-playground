@@ -4,31 +4,27 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Application\UseCase\Session\StartSession;
 
-use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionUseCaseOutput;
+use Eco\Error;
+use Eco\Result;
+use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionInput;
+use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionOutput;
+use RPGPlayground\Core\Utils\Identifier;
 use RPGPlayground\Domain\Entities\Session;
-use RPGPlayground\Domain\ValueObjects\Utils\Identifier;
-use RPGPlayground\Domain\ValueObjects\Utils\Result;
 
 final class StartSessionUseCase
 {
     /**
-     * @return Result<StartSessionUseCaseOutput|null>
+     * @param StartSessionInput $input
+     * @return Result<StartSessionOutput>
      */
-    public function run(StartSessionUseCaseInput $input): Result
+    public static function handle(StartSessionInput $input): Result
     {
-        try {
-            $resultStartSession = new StartSessionUseCaseOutput(session: new Session(
+        return Result::ok(
+            new StartSessionOutput(session: new Session(
                 name: $input->name,
                 identifier: Identifier::generate(),
                 createdAt: new \DateTime(),
-            ));
-
-            return Result::success(
-                'Session (' . $resultStartSession->session->identifier->value . ') started successfully.',
-                $resultStartSession,
-            );
-        } catch (\InvalidArgumentException $e) {
-            return Result::error('Failed to start session' . $e->getMessage());
-        }
+            )),
+        );
     }
 }
