@@ -1,7 +1,2 @@
 [
-    {
-        "title": "(feat): Advantage dices",
-        "body": "Implement advantage and disadvantage mechanics for dice rolls.\n\nAdvantage: roll two dice of the same type and keep the highest result.\nDisadvantage: roll two dice of the same type and keep the lowest result.\n\nThis is a common mechanic in tabletop RPG systems such as D&D 5e and should integrate naturally with the existing `RollDiceInput` and `RollDiceUseCase` pipeline.",
-        "labels": ["enhancement"]
-    }
 ]
