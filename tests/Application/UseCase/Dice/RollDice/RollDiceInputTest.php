@@ -7,7 +7,7 @@ namespace Tests\Application\UseCase\Dice\RollDice;
 use PHPUnit\Framework\TestCase;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceInput;
 use RPGPlayground\Domain\ValueObjects\Dice;
-use RPGPlayground\Domain\ValueObjects\DiceModifier;
+use RPGPlayground\Domain\ValueObjects\RollModifier;
 
 final class RollDiceInputTest extends TestCase
 {
@@ -47,8 +47,8 @@ final class RollDiceInputTest extends TestCase
     public function test_modifiers_are_stored_correctly(): void
     {
         $modifiers = [
-            DiceModifier::fromString('+5'),
-            DiceModifier::fromString('-2'),
+            RollModifier::fromString('+5'),
+            RollModifier::fromString('-2'),
         ];
 
         $input = RollDiceInput::create(new Dice(20), $modifiers)->unwrap();

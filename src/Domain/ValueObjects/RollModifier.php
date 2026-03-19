@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Domain\ValueObjects;
 
-final class DiceModifier
+final class RollModifier
 {
     public const array VALID_SYMBOLS = ['+', '-', '*', 'x', '/'];
     private const string MODIFIER_PATTERN = '/^([+\-\/x\*])(\d+)$/u';

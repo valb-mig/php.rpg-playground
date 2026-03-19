@@ -7,13 +7,13 @@ namespace RPGPlayground\Application\UseCase\Dice\RollDice;
 use Eco\Error;
 use Eco\Result;
 use RPGPlayground\Domain\ValueObjects\Dice;
-use RPGPlayground\Domain\ValueObjects\DiceModifier;
+use RPGPlayground\Domain\ValueObjects\RollModifier;
 
 final class RollDiceInput
 {
     /**
      * @param Dice $dice The dice to roll
-     * @param array<DiceModifier> $modifiers The modifiers to apply to the roll
+     * @param array<RollModifier> $modifiers The modifiers to apply to the roll
      * @param int $multiplier The number of times to roll the dice
      * @throws \InvalidArgumentException
      */
@@ -25,7 +25,7 @@ final class RollDiceInput
 
     /**
      * @param Dice $dice The dice to roll
-     * @param array<DiceModifier> $modifiers The modifiers to apply to the roll
+     * @param array<RollModifier> $modifiers The modifiers to apply to the roll
      * @param int $multiplier The number of times to roll the dice
      * @return Result<self>
      * */

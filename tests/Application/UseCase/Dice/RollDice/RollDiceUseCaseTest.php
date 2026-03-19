@@ -9,7 +9,7 @@ use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceInput;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceOutput;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCase;
 use RPGPlayground\Domain\ValueObjects\Dice;
-use RPGPlayground\Domain\ValueObjects\DiceModifier;
+use RPGPlayground\Domain\ValueObjects\RollModifier;
 
 final class RollDiceUseCaseTest extends TestCase
 {
@@ -75,7 +75,7 @@ final class RollDiceUseCaseTest extends TestCase
     public function test_addition_modifier_is_applied(): void
     {
         // D1 always rolls 1 → +4 = 5
-        $input = $this->makeInput(new Dice(1), modifiers: [DiceModifier::fromString('+4')]);
+        $input = $this->makeInput(new Dice(1), modifiers: [RollModifier::fromString('+4')]);
         $output = RollDiceUseCase::handle($input)->unwrap();
 
         $this->assertSame(5, $output->rollValue);
@@ -84,7 +84,7 @@ final class RollDiceUseCaseTest extends TestCase
     public function test_subtraction_modifier_is_applied(): void
     {
         // D1 always rolls 1 → -1 = 0
-        $input = $this->makeInput(new Dice(1), modifiers: [DiceModifier::fromString('-1')]);
+        $input = $this->makeInput(new Dice(1), modifiers: [RollModifier::fromString('-1')]);
         $output = RollDiceUseCase::handle($input)->unwrap();
 
         $this->assertSame(0, $output->rollValue);
@@ -93,7 +93,7 @@ final class RollDiceUseCaseTest extends TestCase
     public function test_multiplication_modifier_is_applied(): void
     {
         // D1 always rolls 1 → x3 = 3
-        $input = $this->makeInput(new Dice(1), modifiers: [DiceModifier::fromString('x3')]);
+        $input = $this->makeInput(new Dice(1), modifiers: [RollModifier::fromString('x3')]);
         $output = RollDiceUseCase::handle($input)->unwrap();
 
         $this->assertSame(3, $output->rollValue);
@@ -102,7 +102,7 @@ final class RollDiceUseCaseTest extends TestCase
     public function test_division_modifier_is_applied(): void
     {
         // 3x D1 = 3 → /3 = 1
-        $input = $this->makeInput(new Dice(1), modifiers: [DiceModifier::fromString('/3')], multiplier: 3);
+        $input = $this->makeInput(new Dice(1), modifiers: [RollModifier::fromString('/3')], multiplier: 3);
         $output = RollDiceUseCase::handle($input)->unwrap();
 
         $this->assertSame(1, $output->rollValue);
@@ -112,8 +112,8 @@ final class RollDiceUseCaseTest extends TestCase
     {
         // D1 = 1 → +9 = 10 → /2 = 5
         $input = $this->makeInput(new Dice(1), modifiers: [
-            DiceModifier::fromString('+9'),
-            DiceModifier::fromString('/2'),
+            RollModifier::fromString('+9'),
+            RollModifier::fromString('/2'),
         ]);
 
         $output = RollDiceUseCase::handle($input)->unwrap();
@@ -136,7 +136,7 @@ final class RollDiceUseCaseTest extends TestCase
 
     /**
      * @param Dice $dice
-     * @param array<DiceModifier> $modifiers
+     * @param array<RollModifier> $modifiers
      * @param int $multiplier
      * @return RollDiceInput
      */

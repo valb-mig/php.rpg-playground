@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Application\UseCase\Dice\RollDice;
 
-use Eco\Error;
 use Eco\Result;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceInput;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceOutput;
@@ -16,7 +15,7 @@ final class RollDiceUseCase
      * @param  RollDiceInput $input
      * @return Result<RollDiceOutput>
      * @throws \Random\RandomException if the system entropy source fails.
-     * @throws \LogicException if an invalid symbol somehow bypasses DiceModifier::fromString.
+     * @throws \LogicException if an invalid symbol somehow bypasses RollModifier::fromString.
      */
     public static function handle(RollDiceInput $input): Result
     {
