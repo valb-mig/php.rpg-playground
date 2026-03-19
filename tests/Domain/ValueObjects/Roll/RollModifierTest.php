@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Tests\Domain\ValueObjects;
+namespace RPGPlayground\Tests\Domain\ValueObjects\Roll;
 
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Domain\ValueObjects\RollModifier;
+use RPGPlayground\Domain\ValueObjects\Roll\RollModifier;
 
 final class RollModifierTest extends TestCase
 {

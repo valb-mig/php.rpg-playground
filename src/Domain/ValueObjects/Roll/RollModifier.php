@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\ValueObjects;
+namespace RPGPlayground\Domain\ValueObjects\Roll;
 
 final class RollModifier
 {
