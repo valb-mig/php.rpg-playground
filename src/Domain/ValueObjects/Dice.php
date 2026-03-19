@@ -13,7 +13,7 @@ final class Dice
      * @throws \InvalidArgumentException
      */
     public function __construct(
-        public int $sides,
+        public readonly int $sides,
     ) {
         if ($sides < self::MINIMUM_VALUE) {
             throw new \InvalidArgumentException('Invalid number of sides for a dice');
