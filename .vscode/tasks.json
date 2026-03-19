@@ -11,7 +11,7 @@
         "group": "tests"
       },
       "runOptions": {
-        "runOn": "folderOpen"
+        "runOn": "default"
       }
     },
     {
@@ -24,7 +24,7 @@
         "group": "analysis"
       },
       "runOptions": {
-        "runOn": "folderOpen"
+        "runOn": "default"
       }
     }
   ]
