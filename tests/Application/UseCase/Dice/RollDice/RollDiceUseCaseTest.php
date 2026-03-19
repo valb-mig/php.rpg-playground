@@ -8,8 +8,9 @@ use PHPUnit\Framework\TestCase;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceInput;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceOutput;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCase;
+use RPGPlayground\Domain\Enums\Roll\RollAttribute;
 use RPGPlayground\Domain\ValueObjects\Dice;
-use RPGPlayground\Domain\ValueObjects\DiceModifier;
+use RPGPlayground\Domain\ValueObjects\Roll\RollModifier;
 
 final class RollDiceUseCaseTest extends TestCase
 {
@@ -75,7 +76,7 @@ final class RollDiceUseCaseTest extends TestCase
     public function test_addition_modifier_is_applied(): void
     {
         // D1 always rolls 1 → +4 = 5
-        $input = $this->makeInput(new Dice(1), modifiers: [DiceModifier::fromString('+4')]);
+        $input = $this->makeInput(new Dice(1), modifiers: [RollModifier::fromString('+4')]);
         $output = RollDiceUseCase::handle($input)->unwrap();
 
         $this->assertSame(5, $output->rollValue);
@@ -84,7 +85,7 @@ final class RollDiceUseCaseTest extends TestCase
     public function test_subtraction_modifier_is_applied(): void
     {
         // D1 always rolls 1 → -1 = 0
-        $input = $this->makeInput(new Dice(1), modifiers: [DiceModifier::fromString('-1')]);
+        $input = $this->makeInput(new Dice(1), modifiers: [RollModifier::fromString('-1')]);
         $output = RollDiceUseCase::handle($input)->unwrap();
 
         $this->assertSame(0, $output->rollValue);
@@ -93,7 +94,7 @@ final class RollDiceUseCaseTest extends TestCase
     public function test_multiplication_modifier_is_applied(): void
     {
         // D1 always rolls 1 → x3 = 3
-        $input = $this->makeInput(new Dice(1), modifiers: [DiceModifier::fromString('x3')]);
+        $input = $this->makeInput(new Dice(1), modifiers: [RollModifier::fromString('x3')]);
         $output = RollDiceUseCase::handle($input)->unwrap();
 
         $this->assertSame(3, $output->rollValue);
@@ -102,7 +103,7 @@ final class RollDiceUseCaseTest extends TestCase
     public function test_division_modifier_is_applied(): void
     {
         // 3x D1 = 3 → /3 = 1
-        $input = $this->makeInput(new Dice(1), modifiers: [DiceModifier::fromString('/3')], multiplier: 3);
+        $input = $this->makeInput(new Dice(1), modifiers: [RollModifier::fromString('/3')], multiplier: 3);
         $output = RollDiceUseCase::handle($input)->unwrap();
 
         $this->assertSame(1, $output->rollValue);
@@ -112,8 +113,8 @@ final class RollDiceUseCaseTest extends TestCase
     {
         // D1 = 1 → +9 = 10 → /2 = 5
         $input = $this->makeInput(new Dice(1), modifiers: [
-            DiceModifier::fromString('+9'),
-            DiceModifier::fromString('/2'),
+            RollModifier::fromString('+9'),
+            RollModifier::fromString('/2'),
         ]);
 
         $output = RollDiceUseCase::handle($input)->unwrap();
@@ -123,7 +124,6 @@ final class RollDiceUseCaseTest extends TestCase
 
     public function test_no_modifiers_returns_raw_roll(): void
     {
-        // D1 always 1, no modifiers
         $input = $this->makeInput(new Dice(1));
         $output = RollDiceUseCase::handle($input)->unwrap();
 
@@ -131,17 +131,91 @@ final class RollDiceUseCaseTest extends TestCase
     }
 
     // -------------------------------------------------------------------------
+    // Advantage
+    // -------------------------------------------------------------------------
+
+    public function test_advantage_returns_highest_of_two_d1_rolls(): void
+    {
+        // D1 always rolls 1 — max([1, 1]) = 1
+        $input = $this->makeInput(new Dice(1), attribute: RollAttribute::Advantage);
+        $output = RollDiceUseCase::handle($input)->unwrap();
+
+        $this->assertSame(1, $output->rollValue);
+    }
+
+    public function test_advantage_result_is_within_dice_range(): void
+    {
+        $input = $this->makeInput(new Dice(20), attribute: RollAttribute::Advantage);
+        $output = RollDiceUseCase::handle($input)->unwrap();
+
+        $this->assertGreaterThanOrEqual(1, $output->rollValue);
+        $this->assertLessThanOrEqual(20, $output->rollValue);
+    }
+
+    public function test_advantage_with_modifier_applied_after(): void
+    {
+        // D1 advantage = max([1, 1]) = 1 → +4 = 5
+        $input = $this->makeInput(
+            new Dice(1),
+            modifiers: [RollModifier::fromString('+4')],
+            attribute: RollAttribute::Advantage,
+        );
+        $output = RollDiceUseCase::handle($input)->unwrap();
+
+        $this->assertSame(5, $output->rollValue);
+    }
+
+    // -------------------------------------------------------------------------
+    // Disadvantage
+    // -------------------------------------------------------------------------
+
+    public function test_disadvantage_returns_lowest_of_two_d1_rolls(): void
+    {
+        // D1 always rolls 1 — min([1, 1]) = 1
+        $input = $this->makeInput(new Dice(1), attribute: RollAttribute::Disadvantage);
+        $output = RollDiceUseCase::handle($input)->unwrap();
+
+        $this->assertSame(1, $output->rollValue);
+    }
+
+    public function test_disadvantage_result_is_within_dice_range(): void
+    {
+        $input = $this->makeInput(new Dice(20), attribute: RollAttribute::Disadvantage);
+        $output = RollDiceUseCase::handle($input)->unwrap();
+
+        $this->assertGreaterThanOrEqual(1, $output->rollValue);
+        $this->assertLessThanOrEqual(20, $output->rollValue);
+    }
+
+    public function test_disadvantage_with_modifier_applied_after(): void
+    {
+        // D1 disadvantage = min([1, 1]) = 1 → +4 = 5
+        $input = $this->makeInput(
+            new Dice(1),
+            modifiers: [RollModifier::fromString('+4')],
+            attribute: RollAttribute::Disadvantage,
+        );
+        $output = RollDiceUseCase::handle($input)->unwrap();
+
+        $this->assertSame(5, $output->rollValue);
+    }
+
+    // -------------------------------------------------------------------------
     // Helpers
     // -------------------------------------------------------------------------
 
     /**
-     * @param Dice $dice
-     * @param array<DiceModifier> $modifiers
-     * @param int $multiplier
-     * @return RollDiceInput
+     * @param Dice                $dice
+     * @param array<RollModifier> $modifiers
+     * @param int                 $multiplier
+     * @param RollAttribute|null  $attribute
      */
-    private function makeInput(Dice $dice, array $modifiers = [], int $multiplier = 1): RollDiceInput
-    {
-        return RollDiceInput::create($dice, $modifiers, $multiplier)->unwrap();
+    private function makeInput(
+        Dice $dice,
+        array $modifiers = [],
+        int $multiplier = 1,
+        ?RollAttribute $attribute = null,
+    ): RollDiceInput {
+        return RollDiceInput::create($dice, $modifiers, $multiplier, $attribute)->unwrap();
     }
 }

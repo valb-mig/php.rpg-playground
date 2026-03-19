@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Tests\Domain\ValueObjects;
+namespace RPGPlayground\Tests\Domain\ValueObjects\Roll;
 
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Domain\ValueObjects\DiceModifier;
+use RPGPlayground\Domain\ValueObjects\Roll\RollModifier;
 
-final class DiceModifierTest extends TestCase
+final class RollModifierTest extends TestCase
 {
     // -------------------------------------------------------------------------
     // fromString — happy path
@@ -19,7 +19,7 @@ final class DiceModifierTest extends TestCase
         string $expectedSymbol,
         int $expectedValue,
     ): void {
-        $dm = DiceModifier::fromString($modifier);
+        $dm = RollModifier::fromString($modifier);
 
         $this->assertSame($expectedSymbol, $dm->symbol);
         $this->assertSame($expectedValue, $dm->value);
@@ -49,7 +49,7 @@ final class DiceModifierTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid modifier symbol: o');
 
-        DiceModifier::fromString('o2');
+        RollModifier::fromString('o2');
     }
 
     #[\PHPUnit\Framework\Attributes\DataProvider('invalidSymbolProvider')]
@@ -57,7 +57,7 @@ final class DiceModifierTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        DiceModifier::fromString($modifier);
+        RollModifier::fromString($modifier);
     }
 
     /**
@@ -80,35 +80,35 @@ final class DiceModifierTest extends TestCase
 
     public function test_apply_addition(): void
     {
-        $result = DiceModifier::fromString('+5')->apply(10);
+        $result = RollModifier::fromString('+5')->apply(10);
 
         $this->assertSame(15, $result);
     }
 
     public function test_apply_subtraction(): void
     {
-        $result = DiceModifier::fromString('-3')->apply(10);
+        $result = RollModifier::fromString('-3')->apply(10);
 
         $this->assertSame(7, $result);
     }
 
     public function test_apply_multiplication_star(): void
     {
-        $result = DiceModifier::fromString('*2')->apply(10);
+        $result = RollModifier::fromString('*2')->apply(10);
 
         $this->assertSame(20, $result);
     }
 
     public function test_apply_multiplication_x(): void
     {
-        $result = DiceModifier::fromString('x2')->apply(10);
+        $result = RollModifier::fromString('x2')->apply(10);
 
         $this->assertSame(20, $result);
     }
 
     public function test_apply_division_slash(): void
     {
-        $result = DiceModifier::fromString('/4')->apply(20);
+        $result = RollModifier::fromString('/4')->apply(20);
 
         $this->assertSame(5, $result);
     }
@@ -120,14 +120,14 @@ final class DiceModifierTest extends TestCase
     public function test_apply_division_rounds_up_with_ceil(): void
     {
         // 10 / 3 = 3.33... → ceil → 4
-        $result = DiceModifier::fromString('/3')->apply(10);
+        $result = RollModifier::fromString('/3')->apply(10);
 
         $this->assertSame(4, $result);
     }
 
     public function test_apply_subtraction_can_go_negative(): void
     {
-        $result = DiceModifier::fromString('-15')->apply(10);
+        $result = RollModifier::fromString('-15')->apply(10);
 
         $this->assertSame(-5, $result);
     }
