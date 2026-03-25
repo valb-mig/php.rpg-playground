@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace RPGPlayground\Domain\Entities;
 
+use RPGPlayground\Core\Handler\StrHandler;
+
 final class Check
 {
     private function __construct(
@@ -22,6 +24,8 @@ final class Check
         if (empty($title)) {
             throw new \InvalidArgumentException('Title cannot be empty.');
         }
+
+        $title = StrHandler::sanitize($title);
 
         if ($threshold < 0) {
             throw new \InvalidArgumentException('Threshold must be greater than or equal to 0.');

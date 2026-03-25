@@ -19,4 +19,14 @@ final class Dice
             throw new \InvalidArgumentException('Invalid number of sides for a dice');
         }
     }
+
+    /**
+     * Returns the result of rolling a dice with the given number of sides.
+     * @return int The result of the roll.
+     * @throws \Random\RandomException if the system entropy source fails.
+     */
+    public function roll(): int
+    {
+        return random_int(self::MINIMUM_VALUE, $this->sides);
+    }
 }
