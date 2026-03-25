@@ -7,7 +7,6 @@ namespace RPGPlayground\Application\UseCase\Dice\RollDice;
 use Eco\Result;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceInput;
 use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceOutput;
-use RPGPlayground\Domain\Actions\Dice\RollDiceAction;
 use RPGPlayground\Domain\Enums\Roll\RollAttribute;
 
 final class RollDiceUseCase
@@ -46,11 +45,11 @@ final class RollDiceUseCase
         $rolls = [];
 
         for ($i = 0; $i < $input->multiplier; $i++) {
-            $rolls[] = RollDiceAction::roll($input->dice);
+            $rolls[] = $input->dice->roll();
         }
 
         if ($input->attribute !== null) {
-            $rolls[] = RollDiceAction::roll($input->dice);
+            $rolls[] = $input->dice->roll();
         }
 
         return $rolls;
