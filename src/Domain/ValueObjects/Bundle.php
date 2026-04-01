@@ -13,7 +13,7 @@ abstract class Bundle
      * @param array<string, TData> $bundleData
      */
     public function __construct(
-        public readonly array $bundleData = [],
+        private array $bundleData = [],
     ) {}
 
     /**
@@ -41,6 +41,12 @@ abstract class Bundle
     public function get(string $key): mixed
     {
         return $this->has($key) ? $this->bundleData[$key] : null;
+    }
+
+    /** @return array<string, TData> */
+    public function show(): array
+    {
+        return $this->bundleData;
     }
 
     /**
