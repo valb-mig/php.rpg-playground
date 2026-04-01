@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace RPGPlayground\Domain\Entities;
 
 use RPGPlayground\Core\Handler\StrHandler;
-use RPGPlayground\Domain\ValueObjects\Character\Attributes;
+use RPGPlayground\Domain\Entities\Inventory;
+use RPGPlayground\Domain\ValueObjects\Attributes;
 use RPGPlayground\Domain\ValueObjects\Character\Identity;
 use RPGPlayground\Domain\ValueObjects\Character\Statistics;
 
 class Character
 {
+    private Inventory $inventory;
+
     /**
      * @param string $name
      * @param string $description
@@ -55,5 +58,15 @@ class Character
         $description = StrHandler::sanitize($description);
 
         return new self($name, $description, $identity, $statistics, $attributes);
+    }
+
+    public function setInventory(Inventory $inventory): void
+    {
+        $this->inventory = $inventory;
+    }
+
+    public function getInventory(): Inventory
+    {
+        return $this->inventory;
     }
 }
