@@ -1,2 +1,7 @@
 [
+    {
+        "title": "logic to check if the item is durable, because an item that has quantity > 1 cannot be stackable",
+        "description": "An item that has quantity > 1 cannot be stackable",
+        "labels": ["bug"]
+    }
 ]
