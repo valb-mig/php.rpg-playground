@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\ValueObjects\Character\Attributes;
+namespace RPGPlayground\Domain\ValueObjects\Attributes;
 
-use RPGPlayground\Domain\ValueObjects\Character\Attribute;
+use RPGPlayground\Domain\ValueObjects\Attribute;
 
 final class GenericAttribute extends Attribute
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\ValueObjects\Character;
+namespace RPGPlayground\Domain\ValueObjects;
 
 use RPGPlayground\Domain\ValueObjects\Bundle;
 
