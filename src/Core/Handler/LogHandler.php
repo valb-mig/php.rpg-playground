@@ -1,5 +1,7 @@
 <?php
 
+// TODO: Move LogHandler to infrastructure layer
+
 declare(strict_types=1);
 
 namespace RPGPlayground\Core\Handler;
