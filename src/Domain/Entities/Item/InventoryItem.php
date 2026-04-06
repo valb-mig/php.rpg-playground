@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\Entities\Item;
+namespace RPGKernel\Domain\Entities\Item;
 
-use RPGPlayground\Domain\Entities\Item;
+use RPGKernel\Domain\Entities\Item;
 
 final class InventoryItem
 {

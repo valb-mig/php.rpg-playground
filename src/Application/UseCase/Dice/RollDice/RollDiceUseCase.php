@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Application\UseCase\Dice\RollDice;
+namespace RPGKernel\Application\UseCase\Dice\RollDice;
 
 use Eco\Result;
-use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceInput;
-use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceOutput;
-use RPGPlayground\Domain\Enums\Roll\RollAttribute;
+use RPGKernel\Application\UseCase\Dice\RollDice\RollDiceInput;
+use RPGKernel\Application\UseCase\Dice\RollDice\RollDiceOutput;
+use RPGKernel\Domain\Enums\Roll\RollAttribute;
 
 final class RollDiceUseCase
 {

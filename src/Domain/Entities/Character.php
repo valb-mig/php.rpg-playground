@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\Entities;
+namespace RPGKernel\Domain\Entities;
 
-use RPGPlayground\Core\Handler\StrHandler;
-use RPGPlayground\Domain\Entities\Inventory;
-use RPGPlayground\Domain\ValueObjects\Attributes;
-use RPGPlayground\Domain\ValueObjects\Character\Identity;
-use RPGPlayground\Domain\ValueObjects\Character\Statistics;
+use RPGKernel\Core\Handler\StrHandler;
+use RPGKernel\Domain\Entities\Inventory;
+use RPGKernel\Domain\ValueObjects\Attributes;
+use RPGKernel\Domain\ValueObjects\Character\Identity;
+use RPGKernel\Domain\ValueObjects\Character\Statistics;
 
 class Character
 {

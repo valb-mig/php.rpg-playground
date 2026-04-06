@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Application\UseCase\Dice\RollDice;
+namespace RPGKernel\Application\UseCase\Dice\RollDice;
 
 use Eco\Error;
 use Eco\Result;
-use RPGPlayground\Domain\Enums\Roll\RollAttribute;
-use RPGPlayground\Domain\ValueObjects\Dice;
-use RPGPlayground\Domain\ValueObjects\Roll\RollModifier;
+use RPGKernel\Domain\Enums\Roll\RollAttribute;
+use RPGKernel\Domain\ValueObjects\Dice;
+use RPGKernel\Domain\ValueObjects\Roll\RollModifier;
 
 final class RollDiceInput
 {

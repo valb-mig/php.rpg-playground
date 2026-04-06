@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\Entities;
+namespace RPGKernel\Domain\Entities;
 
-use RPGPlayground\Core\Handler\StrHandler;
-use RPGPlayground\Core\Utils\Identifier;
-use RPGPlayground\Domain\ValueObjects\Attributes;
+use RPGKernel\Core\Handler\StrHandler;
+use RPGKernel\Core\Utils\Identifier;
+use RPGKernel\Domain\ValueObjects\Attributes;
 
 class Item
 {

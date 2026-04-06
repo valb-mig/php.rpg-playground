@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Tests\Application\UseCase\Session\StartSession;
 
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionInput;
-use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionOutput;
-use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionUseCase;
-use RPGPlayground\Domain\Entities\Session;
+use RPGKernel\Application\UseCase\Session\StartSession\StartSessionInput;
+use RPGKernel\Application\UseCase\Session\StartSession\StartSessionOutput;
+use RPGKernel\Application\UseCase\Session\StartSession\StartSessionUseCase;
+use RPGKernel\Domain\Entities\Session;
 
 final class StartSessionUseCaseTest extends TestCase
 {
@@ -60,16 +60,8 @@ final class StartSessionUseCaseTest extends TestCase
     {
         $input = $this->makeInput('My Campaign');
 
-        $id1 = StartSessionUseCase::handle($input)
-            ->unwrap()
-            ->session
-            ->identifier
-            ->value;
-        $id2 = StartSessionUseCase::handle($input)
-            ->unwrap()
-            ->session
-            ->identifier
-            ->value;
+        $id1 = StartSessionUseCase::handle($input)->unwrap()->session->identifier->value;
+        $id2 = StartSessionUseCase::handle($input)->unwrap()->session->identifier->value;
 
         $this->assertNotSame($id1, $id2);
     }

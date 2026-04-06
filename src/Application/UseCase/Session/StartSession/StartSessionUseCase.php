@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Application\UseCase\Session\StartSession;
+namespace RPGKernel\Application\UseCase\Session\StartSession;
 
 use Eco\Error;
 use Eco\Result;
-use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionInput;
-use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionOutput;
-use RPGPlayground\Core\Utils\Identifier;
-use RPGPlayground\Domain\Entities\Session;
+use RPGKernel\Application\UseCase\Session\StartSession\StartSessionInput;
+use RPGKernel\Application\UseCase\Session\StartSession\StartSessionOutput;
+use RPGKernel\Core\Utils\Identifier;
+use RPGKernel\Domain\Entities\Session;
 
 final class StartSessionUseCase
 {

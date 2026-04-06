@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Tests\Domain\ValueObjects;
+namespace RPGKernel\Tests\Domain\ValueObjects;
 
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Domain\ValueObjects\Dice;
+use RPGKernel\Domain\ValueObjects\Dice;
 
 final class DiceTest extends TestCase
 {

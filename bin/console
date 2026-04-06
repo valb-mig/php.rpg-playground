@@ -7,7 +7,7 @@ require __DIR__ . '/../bootstrap.php';
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use RPGPlayground\Core\Handler\LogHandler;
+use RPGKernel\Core\Handler\LogHandler;
 use Symfony\Component\Console\Application;
 
 LogHandler::bind(new Logger('console'));

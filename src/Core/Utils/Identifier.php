@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Core\Utils;
+namespace RPGKernel\Core\Utils;
 
 final class Identifier
 {

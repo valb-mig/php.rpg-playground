@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Application\UseCase\Session\StartSession;
+namespace RPGKernel\Application\UseCase\Session\StartSession;
 
-use RPGPlayground\Domain\Entities\Session;
+use RPGKernel\Domain\Entities\Session;
 
 final class StartSessionOutput
 {

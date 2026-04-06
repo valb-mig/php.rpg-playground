@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Tests\Application\UseCase\Dice\RollDice;
 
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceInput;
-use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceOutput;
-use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceUseCase;
-use RPGPlayground\Domain\Enums\Roll\RollAttribute;
-use RPGPlayground\Domain\ValueObjects\Dice;
-use RPGPlayground\Domain\ValueObjects\Roll\RollModifier;
+use RPGKernel\Application\UseCase\Dice\RollDice\RollDiceInput;
+use RPGKernel\Application\UseCase\Dice\RollDice\RollDiceOutput;
+use RPGKernel\Application\UseCase\Dice\RollDice\RollDiceUseCase;
+use RPGKernel\Domain\Enums\Roll\RollAttribute;
+use RPGKernel\Domain\ValueObjects\Dice;
+use RPGKernel\Domain\ValueObjects\Roll\RollModifier;
 
 final class RollDiceUseCaseTest extends TestCase
 {

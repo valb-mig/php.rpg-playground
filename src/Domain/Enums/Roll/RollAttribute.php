@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\Enums\Roll;
+namespace RPGKernel\Domain\Enums\Roll;
 
 enum RollAttribute: string
 {

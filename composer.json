@@ -1,8 +1,8 @@
 {
-    "name": "valb/php.rpg-playground",
+    "name": "valb/php.rpg-kernel",
     "autoload": {
         "psr-4": {
-            "RPGPlayground\\": "src/",
+            "RPGKernel\\": "src/",
             "Tests\\": "tests/"
         }
     },

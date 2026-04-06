@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\ValueObjects;
+namespace RPGKernel\Domain\ValueObjects;
 
-use RPGPlayground\Domain\ValueObjects\Bundle;
+use RPGKernel\Domain\ValueObjects\Bundle;
 
 final class Attributes extends Bundle
 {

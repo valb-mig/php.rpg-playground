@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\ValueObjects;
+namespace RPGKernel\Domain\ValueObjects;
 
 final class Durability
 {

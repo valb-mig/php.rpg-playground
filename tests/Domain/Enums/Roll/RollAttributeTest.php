@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Tests\Domain\ValueObjects\Roll;
+namespace RPGKernel\Tests\Domain\ValueObjects\Roll;
 
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Domain\Enums\Roll\RollAttribute;
+use RPGKernel\Domain\Enums\Roll\RollAttribute;
 
 final class RollAttributeTest extends TestCase
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\ValueObjects\Character;
+namespace RPGKernel\Domain\ValueObjects\Character;
 
-use RPGPlayground\Domain\ValueObjects\Bundle;
+use RPGKernel\Domain\ValueObjects\Bundle;
 
 final class Identity extends Bundle
 {

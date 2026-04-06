@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Tests\Application\UseCase\Session\StartSession;
+namespace RPGKernel\Tests\Application\UseCase\Session\StartSession;
 
 use Error;
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Application\UseCase\Session\StartSession\StartSessionInput;
+use RPGKernel\Application\UseCase\Session\StartSession\StartSessionInput;
 
 final class StartSessionInputTest extends TestCase
 {

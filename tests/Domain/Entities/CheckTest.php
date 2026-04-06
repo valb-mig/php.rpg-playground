@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Domain\Entities;
 
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Domain\Entities\Check;
+use RPGKernel\Domain\Entities\Check;
 
 final class CheckTest extends TestCase
 {

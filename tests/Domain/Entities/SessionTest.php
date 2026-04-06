@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Domain\Entities;
 
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Core\Utils\Identifier;
-use RPGPlayground\Domain\Entities\Session;
+use RPGKernel\Core\Utils\Identifier;
+use RPGKernel\Domain\Entities\Session;
 
 final class SessionTest extends TestCase
 {

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tests\Application\UseCase\Dice\RollDice;
 
 use PHPUnit\Framework\TestCase;
-use RPGPlayground\Application\UseCase\Dice\RollDice\RollDiceInput;
-use RPGPlayground\Domain\ValueObjects\Dice;
-use RPGPlayground\Domain\ValueObjects\Roll\RollModifier;
+use RPGKernel\Application\UseCase\Dice\RollDice\RollDiceInput;
+use RPGKernel\Domain\ValueObjects\Dice;
+use RPGKernel\Domain\ValueObjects\Roll\RollModifier;
 
 final class RollDiceInputTest extends TestCase
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\ValueObjects\Character\Statistics;
+namespace RPGKernel\Domain\ValueObjects\Character\Statistics;
 
-use RPGPlayground\Domain\ValueObjects\Character\Statistic;
+use RPGKernel\Domain\ValueObjects\Character\Statistic;
 
 final class GenericStatistic extends Statistic
 {

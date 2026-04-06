@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Domain\Entities;
+namespace RPGKernel\Domain\Entities;
 
-use RPGPlayground\Core\Utils\Identifier;
-use RPGPlayground\Domain\Entities\Item\InventoryItem;
+use RPGKernel\Core\Utils\Identifier;
+use RPGKernel\Domain\Entities\Item\InventoryItem;
 
 class Inventory
 {

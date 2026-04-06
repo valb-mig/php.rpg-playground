@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Application\UseCase\Session\StartSession;
+namespace RPGKernel\Application\UseCase\Session\StartSession;
 
 use Eco\Error;
 use Eco\Result;
-use RPGPlayground\Core\Handler\StrHandler;
+use RPGKernel\Core\Handler\StrHandler;
 
 final class StartSessionInput
 {

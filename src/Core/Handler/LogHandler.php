@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace RPGPlayground\Core\Handler;
+namespace RPGKernel\Core\Handler;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Level;
