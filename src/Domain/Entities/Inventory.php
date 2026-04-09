@@ -18,8 +18,8 @@ class Inventory
      */
     public function __construct(
         private array $items,
-        public readonly int $slots,
-        public readonly float $maxWeight,
+        private int $slots,
+        private float $maxWeight,
     ) {
         if ($slots < 1) {
             throw new \InvalidArgumentException('Slots must be greater than 0');
@@ -50,6 +50,11 @@ class Inventory
         }
     }
 
+    /**
+     * @param InventoryItem $item
+     * @return void
+     * @throws \InvalidArgumentException
+     */
     public function add(InventoryItem $item): void
     {
         if ($this->has($item->getItem()->getId())) {
@@ -142,5 +147,37 @@ class Inventory
     public function show(): array
     {
         return $this->items;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSlots(): int
+    {
+        return $this->slots;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMaxWeight(): float
+    {
+        return $this->maxWeight;
+    }
+
+    /**
+     * @param int $slots
+     */
+    public function setSlots(int $slots): void
+    {
+        $this->slots = $slots;
+    }
+
+    /**
+     * @param float $maxWeight
+     */
+    public function setMaxWeight(float $maxWeight): void
+    {
+        $this->maxWeight = $maxWeight;
     }
 }

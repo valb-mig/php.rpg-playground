@@ -13,6 +13,7 @@ use RPGKernel\Domain\ValueObjects\Character\Statistics;
 class Character
 {
     private Inventory $inventory;
+    private Equipment $equipment;
 
     /**
      * @param string $name
@@ -60,11 +61,35 @@ class Character
         return new self($name, $description, $identity, $statistics, $attributes);
     }
 
+    /**
+     * @param Equipment $equipment
+     * @return void
+     */
+    public function setEquipment(Equipment $equipment): void
+    {
+        $this->equipment = $equipment;
+    }
+
+    /**
+     * @return Equipment
+     */
+    public function getEquipment(): Equipment
+    {
+        return $this->equipment;
+    }
+
+    /**
+     * @param Inventory $inventory
+     * @return void
+     */
     public function setInventory(Inventory $inventory): void
     {
         $this->inventory = $inventory;
     }
 
+    /**
+     * @return Inventory
+     */
     public function getInventory(): Inventory
     {
         return $this->inventory;
