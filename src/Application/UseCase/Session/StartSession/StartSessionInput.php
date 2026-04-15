@@ -4,25 +4,22 @@ declare(strict_types=1);
 
 namespace RPGKernel\Application\UseCase\Session\StartSession;
 
-use Eco\Error;
 use Eco\Result;
-use RPGKernel\Core\Handler\StrHandler;
+use RPGKernel\Domain\Entities\Session;
+use RPGKernel\Domain\Enums\SessionStatus;
 
 final class StartSessionInput
 {
     /**
-     * @param string $name The name of the session to be started
+     * @param Session $session
      */
     private function __construct(
-        public string $name,
+        public Session $session,
     ) {}
 
     /** @return Result<self> */
-    public static function create(string $name): Result
+    public static function create(Session $session): Result
     {
-        /** @var Result<self> */
-        return Result::ok($name)->ensure([
-            [fn($name) => !empty($name), Error::validation('name', 'Name cannot be empty')],
-        ])->transform(fn($name): self => new self(StrHandler::sanitize($name)));
+        return Result::ok(new self(session: $session));
     }
 }
