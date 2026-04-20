@@ -6,10 +6,14 @@ namespace RPGKernel\Domain\Entities;
 
 use RPGKernel\Core\Handler\StrHandler;
 use RPGKernel\Core\Utils\Identifier;
+use RPGKernel\Domain\Contracts\Identifier\HasIdentifierContract;
 use RPGKernel\Domain\Enums\SessionStatus;
+use RPGKernel\Domain\Traits\IdentifierAware;
 
-final class Session
+final class Session implements HasIdentifierContract
 {
+    use IdentifierAware;
+
     private SessionStatus $sessionStatus;
 
     /**
@@ -19,7 +23,7 @@ final class Session
      * @throws \InvalidArgumentException
      */
     public function __construct(
-        public readonly Identifier $identifier,
+        private Identifier $identifier,
         private string $name,
         public readonly \DateTime $createdAt,
     ) {
@@ -28,6 +32,14 @@ final class Session
         }
         $this->name = StrHandler::sanitize($name);
         $this->sessionStatus = SessionStatus::CREATED;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
     }
 
     /**
