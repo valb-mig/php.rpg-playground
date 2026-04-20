@@ -24,11 +24,11 @@ class Equipment
      */
     public function equip(Item $item): void
     {
-        if ($this->has($item->getId())) {
+        if ($this->has($item->getIdentifier())) {
             throw new \InvalidArgumentException('Item already exists in equipment');
         }
 
-        $this->items[$item->getId()->value] = $item;
+        $this->items[$item->getIdentifierValue()] = $item;
     }
 
     /**
