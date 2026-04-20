@@ -57,7 +57,7 @@ class Inventory
      */
     public function add(InventoryItem $item): void
     {
-        if ($this->has($item->getItem()->getId())) {
+        if ($this->has($item->getItem()->getIdentifier())) {
             throw new \InvalidArgumentException('Item already exists in inventory');
         }
 
@@ -68,7 +68,7 @@ class Inventory
         // TODO: checks if the inventory will fit the items if the new item is added
         $this->checkItemsWeight([...$this->items, $item]);
 
-        $this->items[$item->getItem()->getId()->value] = $item;
+        $this->items[$item->getItem()->getIdentifierValue()] = $item;
     }
 
     /**
