@@ -7,14 +7,17 @@ namespace RPGKernel\Application\UseCase\Dice\RollDice;
 use Eco\Error;
 use Eco\Result;
 use RPGKernel\Domain\Enums\Roll\RollAttribute;
+use RPGKernel\Domain\Traits\SessionAware;
 use RPGKernel\Domain\ValueObjects\Dice;
 use RPGKernel\Domain\ValueObjects\Roll\RollModifier;
 
 final class RollDiceInput
 {
+    use SessionAware;
+
     /**
      * @param Dice $dice The dice to roll
-     * @param array<RollModifier> $modifiers The modifiers to apply to the roll
+     * @param RollModifier[] $modifiers The modifiers to apply to the roll
      * @param int $multiplier The number of times to roll the dice
      * @param RollAttribute $attribute The attributes to apply to the roll
      * @throws \InvalidArgumentException
@@ -28,7 +31,7 @@ final class RollDiceInput
 
     /**
      * @param Dice $dice The dice to roll
-     * @param array<RollModifier> $modifiers The modifiers to apply to the roll
+     * @param RollModifier[] $modifiers The modifiers to apply to the roll
      * @param int $multiplier The number of times to roll the dice
      * @return Result<self>
      * */
