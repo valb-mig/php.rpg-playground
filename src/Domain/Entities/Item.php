@@ -6,19 +6,23 @@ namespace RPGKernel\Domain\Entities;
 
 use RPGKernel\Core\Handler\StrHandler;
 use RPGKernel\Core\Utils\Identifier;
+use RPGKernel\Domain\Contracts\Identifier\HasIdentifierContract;
+use RPGKernel\Domain\Traits\IdentifierAware;
 use RPGKernel\Domain\ValueObjects\Attributes;
 
-class Item
+class Item implements HasIdentifierContract
 {
+    use IdentifierAware;
+
     /**
-     * @param Identifier $id
+     * @param Identifier $identifier
      * @param string $name
      * @param string $description
      * @param float $weight
      * @param Attributes $attributes
      */
     public function __construct(
-        private Identifier $id,
+        private Identifier $identifier,
         private string $name,
         private string $description,
         private float $weight,
@@ -37,14 +41,6 @@ class Item
 
         $this->name = $name;
         $this->description = $description;
-    }
-
-    /**
-     * @return Identifier
-     */
-    public function getId(): Identifier
-    {
-        return $this->id;
     }
 
     /**
