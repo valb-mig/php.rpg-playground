@@ -7,7 +7,9 @@ namespace RPGKernel\Application\UseCase\Dice\RollDice;
 use Eco\Result;
 use RPGKernel\Application\UseCase\Dice\RollDice\RollDiceInput;
 use RPGKernel\Application\UseCase\Dice\RollDice\RollDiceOutput;
+use RPGKernel\Core\Handler\RPGSessionEventHandler;
 use RPGKernel\Domain\Enums\Roll\RollAttribute;
+use RPGKernel\Domain\Events\Dice\RollDiceEvent;
 
 final class RollDiceUseCase
 {
@@ -30,6 +32,17 @@ final class RollDiceUseCase
 
         foreach ($input->modifiers as $modifier) {
             $total = $modifier->apply($total);
+        }
+
+        if ($input->hasSession()) {
+            RPGSessionEventHandler::dispatch(new RollDiceEvent(
+                sessionId: $input->getSessionId(),
+                dice: $input->dice,
+                modifiers: $input->modifiers,
+                multiplier: $input->multiplier,
+                attribute: $input->attribute,
+                rollValue: $total,
+            ));
         }
 
         return Result::ok(new RollDiceOutput($total));
